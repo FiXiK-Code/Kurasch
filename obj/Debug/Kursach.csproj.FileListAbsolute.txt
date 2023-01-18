@@ -1,0 +1,15 @@
+D:\Programm\Projects\Kursach\bin\Debug\Kursach.exe.config
+D:\Programm\Projects\Kursach\bin\Debug\Kursach.exe
+D:\Programm\Projects\Kursach\bin\Debug\Kursach.pdb
+D:\Programm\Projects\Kursach\obj\Debug\Kursach.csproj.AssemblyReference.cache
+D:\Programm\Projects\Kursach\obj\Debug\App.g.cs
+D:\Programm\Projects\Kursach\obj\Debug\Kursach_MarkupCompile.cache
+D:\Programm\Projects\Kursach\obj\Debug\Kursach_MarkupCompile.lref
+D:\Programm\Projects\Kursach\obj\Debug\Kursach.g.resources
+D:\Programm\Projects\Kursach\obj\Debug\Kursach.Properties.Resources.resources
+D:\Programm\Projects\Kursach\obj\Debug\Kursach.csproj.GenerateResource.cache
+D:\Programm\Projects\Kursach\obj\Debug\Kursach.csproj.CoreCompileInputs.cache
+D:\Programm\Projects\Kursach\obj\Debug\Kursach.exe
+D:\Programm\Projects\Kursach\obj\Debug\Kursach.pdb
+D:\Programm\Projects\Kursach\obj\Debug\HomeWindow.g.cs
+D:\Programm\Projects\Kursach\obj\Debug\HomeWindow.baml
