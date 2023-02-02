@@ -1,0 +1,80 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="KinoModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="admin">
+    <Key>
+      <PropertyRef Name="id" />
+      <PropertyRef Name="name" />
+      <PropertyRef Name="login" />
+      <PropertyRef Name="password" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" />
+    <Property Name="name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="login" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="password" Type="String" MaxLength="6" FixedLength="false" Unicode="false" Nullable="false" />
+  </EntityType>
+  <EntityType Name="afish">
+    <Key>
+      <PropertyRef Name="id" />
+      <PropertyRef Name="name" />
+      <PropertyRef Name="length" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" />
+    <Property Name="name" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="length" Type="Time" Nullable="false" Precision="7" />
+  </EntityType>
+  <EntityType Name="kassir">
+    <Key>
+      <PropertyRef Name="id" />
+      <PropertyRef Name="name" />
+      <PropertyRef Name="login" />
+      <PropertyRef Name="password" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" />
+    <Property Name="name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="login" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="password" Type="String" MaxLength="6" FixedLength="false" Unicode="false" Nullable="false" />
+  </EntityType>
+  <EntityType Name="otchot">
+    <Key>
+      <PropertyRef Name="id" />
+      <PropertyRef Name="mes" />
+      <PropertyRef Name="countTicket" />
+      <PropertyRef Name="sumTicketPrice" />
+      <PropertyRef Name="sumPodPrice" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" />
+    <Property Name="mes" Type="Int32" Nullable="false" />
+    <Property Name="countTicket" Type="Int32" Nullable="false" />
+    <Property Name="sumTicketPrice" Type="Int32" Nullable="false" />
+    <Property Name="sumPodPrice" Type="Int32" Nullable="false" />
+  </EntityType>
+  <EntityType Name="seans">
+    <Key>
+      <PropertyRef Name="id" />
+      <PropertyRef Name="afish_id" />
+      <PropertyRef Name="price" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" />
+    <Property Name="afish_id" Type="Int32" Nullable="false" />
+    <Property Name="time" Type="String" MaxLength="13" FixedLength="false" Unicode="false" />
+    <Property Name="price" Type="Int32" Nullable="false" />
+  </EntityType>
+  <EntityType Name="snacks">
+    <Key>
+      <PropertyRef Name="id" />
+      <PropertyRef Name="price" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" />
+    <Property Name="name" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="tara" Type="String" MaxLength="5" FixedLength="false" Unicode="false" />
+    <Property Name="price" Type="Int32" Nullable="false" />
+  </EntityType>
+  <EntityContainer Name="KinoEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="admin" EntityType="Self.admin" />
+    <EntitySet Name="afish" EntityType="Self.afish" />
+    <EntitySet Name="kassir" EntityType="Self.kassir" />
+    <EntitySet Name="otchot" EntityType="Self.otchot" />
+    <EntitySet Name="seans" EntityType="Self.seans" />
+    <EntitySet Name="snacks" EntityType="Self.snacks" />
+  </EntityContainer>
+</Schema>

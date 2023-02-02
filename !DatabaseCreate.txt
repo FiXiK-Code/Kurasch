@@ -1,0 +1,47 @@
+--create database Kino;
+use Kino;
+
+create table kassir(
+  id int NOT NULL,
+  name varchar(50) NOT NULL,
+  login varchar(10) NOT NULL,
+  password varchar(6) NOT NULL
+);
+create table admin(
+id int NOT NULL,
+name varchar(50) NOT NULL,
+  login varchar(10) NOT NULL,
+  password varchar(6) NOT NULL
+);
+create table otchot(
+id int NOT NULL,
+  mes int NOT NULL,
+  countTicket int NOT NULL,
+  sumTicketPrice int not null,
+  sumProdPrice int not null,
+);
+
+create table afish(
+id int not null,
+name varchar(100) not null,
+length time not null,
+);
+create table zall(
+id int not null,
+countRyd int not null,
+countPlant int not null
+);
+create table seans(
+id int not null,
+afish_id int not null,
+zall_id int not null,
+selectPlant varchar(500),
+time varchar(13),
+price int not null
+);
+create table snacks(
+id int not null,
+name varchar(20),
+tara varchar(5),
+price int not null
+);

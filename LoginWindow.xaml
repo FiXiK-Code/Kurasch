@@ -5,11 +5,68 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Kursach"
         mc:Ignorable="d"
-        Title="LoginWindow" Height="426.316" Width="409.907">
+        Title="Авторизация" Height="426.316" Width="409.907">
     <Grid>
-        <TextBox HorizontalAlignment="Left" Height="48" Margin="62,88,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="279"/>
-        <TextBox HorizontalAlignment="Left" Height="48" Margin="62,167,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="279"/>
-        <Button x:Name="login" Content="Button" HorizontalAlignment="Left" Margin="124,269,0,0" VerticalAlignment="Top" Width="182" Height="40" Click="login_Click"/>
+        <Grid x:Name="logined" HorizontalAlignment="Left" Height="397" VerticalAlignment="Top" Width="403" Margin="0,0,0,-0.2" d:IsHidden="True">
+            <TextBox x:Name="LoginTextBox" HorizontalAlignment="Left" Height="48" Margin="62,88,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="279"/>
+            <TextBox x:Name="PasswordTextBox" HorizontalAlignment="Left" Height="48" Margin="62,167,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="279"/>
+            <Button x:Name="login" Content="Button" HorizontalAlignment="Left" Margin="124,269,0,0" VerticalAlignment="Top" Width="182" Height="40" Click="login_Click"/>
+            <Button x:Name="selectorBack" Content="Отмена" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Width="75" Click="selectorBack_Click"/>
+        </Grid>
+        <Grid x:Name="selector" HorizontalAlignment="Left" Height="397" VerticalAlignment="Top" Width="403" Margin="0,0,0,-0.2" d:IsHidden="True">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="16*"/>
+                <ColumnDefinition Width="387*"/>
+            </Grid.ColumnDefinitions>
+            <Button x:Name="kassirBtn" Content="Открыть смену" HorizontalAlignment="Left" Margin="52,130,0,0" VerticalAlignment="Top" Width="270" Height="61" FontSize="20" Click="kassirBtn_Click" Grid.Column="1"/>
+            <Button x:Name="adminBtn" Content="Администратор" HorizontalAlignment="Left" Margin="52,215,0,0" VerticalAlignment="Top" Width="270" Height="61" FontSize="20" Click="adminBtn_Click" Grid.Column="1"/>
+        </Grid>
+        <Grid x:Name="admin" HorizontalAlignment="Left" Height="397" VerticalAlignment="Top" Width="403" Margin="0,0,0,-0.2" d:IsHidden="True">
+            <Button x:Name="adminKassiri" Content="Кассиры" HorizontalAlignment="Left" Margin="71,95,0,0" VerticalAlignment="Top" Width="270" Height="61" FontSize="20" Click="adminKassiri_Click"/>
+            <Button x:Name="adminOtchot" Content="Отчет" HorizontalAlignment="Left" Margin="71,163,0,0" VerticalAlignment="Top" Width="270" Height="61" FontSize="20" Click="adminOtchot_Click"/>
+            <Button x:Name="adminExit" Content="Выход" HorizontalAlignment="Left" Margin="71,299,0,0" VerticalAlignment="Top" Width="270" Height="61" FontSize="20" Click="adminExit_Click"/>
+            <Button x:Name="afiahRed" Content="Афиша" HorizontalAlignment="Left" Margin="71,229,0,0" VerticalAlignment="Top" Width="270" Height="61" FontSize="20" Click="afiahRed_Click"/>
+        </Grid>
+        <Grid x:Name="listKassir" HorizontalAlignment="Left" Height="397" VerticalAlignment="Top" Width="403" Margin="0,0,0,-0.2" d:IsHidden="True">
+            <Button x:Name="listKassirBack" Content="Назад" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Width="75" FontSize="20" Click="listKassirBack_Click"/>
+            <ListBox x:Name="ListBox_Kassir" HorizontalAlignment="Left" Height="264" Margin="10,45,0,0" VerticalAlignment="Top" Width="383" FontSize="20"/>
+            <Button x:Name="lisatKassirAdd" Content="Добавить" HorizontalAlignment="Left" Margin="110,351,0,0" VerticalAlignment="Top" Width="184" Height="32" FontSize="20" Click="lisatKassirAdd_Click"/>
+            <Button x:Name="listKassirRedact" Content="Редактировать" HorizontalAlignment="Left" Margin="10,314,0,0" VerticalAlignment="Top" Width="184" Height="32" FontSize="20" Click="listKassirRedact_Click"/>
+            <Button x:Name="listKassirDelete" Content="Удалить" HorizontalAlignment="Left" Margin="209,314,0,0" VerticalAlignment="Top" Width="184" Height="32" FontSize="20" Click="listKassirDelete_Click"/>
+        </Grid>
+        <Grid x:Name="kassir"  HorizontalAlignment="Left" Height="397" VerticalAlignment="Top" Width="403" Margin="0,0,0,-0.2">
+            <TextBox x:Name="Kassir_fio" HorizontalAlignment="Left" Height="58" Margin="99,71,0,0" TextWrapping="Wrap" Text="Иванов Иван Иванович" VerticalContentAlignment="Center" VerticalAlignment="Top" Width="294" FontSize="20" TextAlignment="Center"/>
+            <TextBlock HorizontalAlignment="Left" Margin="10,87,0,0" TextWrapping="Wrap" Text="ФИО:" VerticalAlignment="Top" Height="29" Width="84" FontSize="20" />
+            <TextBox x:Name="Kassir_login" HorizontalAlignment="Left" Height="58" Margin="99,137,0,0" TextWrapping="Wrap" Text="логин" VerticalContentAlignment="Center" VerticalAlignment="Top" Width="294" FontSize="20" TextAlignment="Center"/>
+            <TextBlock HorizontalAlignment="Left" Margin="10,153,0,0" TextWrapping="Wrap" Text="Логин:" VerticalAlignment="Top" Height="30" Width="84" FontSize="20"/>
+            <TextBox x:Name="Kassir_paswd" HorizontalAlignment="Left" Height="58" Margin="99,203,0,0" TextWrapping="Wrap" Text="пароль" VerticalContentAlignment="Center" VerticalAlignment="Top" Width="294" FontSize="20" TextAlignment="Center"/>
+            <TextBlock HorizontalAlignment="Left" Margin="10,219,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Height="34" Width="84" FontSize="20"><Run Text="Пароль"/><Run Text=":"/></TextBlock>
+            <Button x:Name="Kassir_saveButton" Content="Сохранить" HorizontalAlignment="Left" Margin="99,304,0,0" VerticalAlignment="Top" Width="192" Height="43" FontSize="20" Click="Kassir_saveButton_Click"/>
+            <Button Content="Отмена" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Width="108" Height="37" FontSize="20" Click="Button_Click"/>
+        </Grid>
+        <Grid x:Name="otchot" HorizontalAlignment="Left" Height="397" VerticalAlignment="Top" Width="403" Margin="0,0,0,-0.2" d:IsHidden="True">
+            <Button x:Name="otchotBack" Content="Назад" HorizontalAlignment="Left" Margin="10,8,0,0" VerticalAlignment="Top" Width="86" Height="32" FontSize="20" Click="otchotBack_Click"/>
+            <ComboBox x:Name="MonthCB" HorizontalAlignment="Left" Margin="188,101,0,0" VerticalAlignment="Top" Width="141" FontSize="20" SelectionChanged="MonthCB_SelectionChanged"/>
+            <TextBlock HorizontalAlignment="Left" Margin="71,101,0,0" TextWrapping="Wrap" VerticalAlignment="Top" FontSize="20"><Run Text="Месяц"/><Run Text=":"/></TextBlock>
+            <DataGrid x:Name="DataGrid_Othot" HorizontalAlignment="Left" Height="127" Margin="10,161,0,0" VerticalAlignment="Top" Width="383"/>
+        </Grid>
+        <Grid x:Name="ListAfiah" d:IsHidden="True">
+            <Button x:Name="AfishaBack" Content="Назад" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Width="75" FontSize="20" Click="AfishaBack_Click"/>
+            <ListBox x:Name="ListBox_Afisha" HorizontalAlignment="Left" Height="264" Margin="10,45,0,0" VerticalAlignment="Top" Width="383" FontSize="20"/>
+            <Button x:Name="AfishaAdd" Content="Добавить" HorizontalAlignment="Left" Margin="110,351,0,0" VerticalAlignment="Top" Width="184" Height="32" FontSize="20" Click="AfishaAdd_Click"/>
+            <Button x:Name="AfishaRedact" Content="Редактировать" HorizontalAlignment="Left" Margin="10,314,0,0" VerticalAlignment="Top" Width="184" Height="32" FontSize="20" Click="AfishaRedact_Click"/>
+            <Button x:Name="AfishaDelete" Content="Удалить" HorizontalAlignment="Left" Margin="209,314,0,0" VerticalAlignment="Top" Width="184" Height="32" FontSize="20" Click="AfishaDelete_Click"/>
+        </Grid>
+        <Grid x:Name="afish"  HorizontalAlignment="Left" Height="397" VerticalAlignment="Top" Width="403" d:IsHidden="True">
+            <TextBox HorizontalAlignment="Left" Height="58" Margin="99,71,0,0" TextWrapping="Wrap" Text="" VerticalContentAlignment="Center" VerticalAlignment="Top" Width="294" FontSize="20" TextAlignment="Center"/>
+            <TextBlock HorizontalAlignment="Left" Margin="10,87,0,0" TextWrapping="Wrap" Text="text" VerticalAlignment="Top" Height="29" Width="84" FontSize="20" />
+            <TextBox HorizontalAlignment="Left" Height="58" Margin="99,137,0,0" TextWrapping="Wrap" Text="" VerticalContentAlignment="Center" VerticalAlignment="Top" Width="294" FontSize="20" TextAlignment="Center"/>
+            <TextBlock HorizontalAlignment="Left" Margin="10,153,0,0" TextWrapping="Wrap" Text="text" VerticalAlignment="Top" Height="30" Width="84" FontSize="20"/>
+            <TextBox HorizontalAlignment="Left" Height="58" Margin="99,203,0,0" TextWrapping="Wrap" Text="" VerticalContentAlignment="Center" VerticalAlignment="Top" Width="294" FontSize="20" TextAlignment="Center"/>
+            <TextBlock HorizontalAlignment="Left" Margin="10,219,0,0" TextWrapping="Wrap" Text="text" VerticalAlignment="Top" Height="34" Width="84" FontSize="20" />
+            <Button x:Name="afish_Save" Content="" HorizontalAlignment="Left" Margin="150,304,0,0" VerticalAlignment="Top" Width="192" Height="43" FontSize="20" Click="afish_Save_Click"/>
+            <Button x:Name="agish_back" Content="Отмена" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Width="108" Height="37" FontSize="20" Click="agish_back_Click"/>
+        </Grid>
 
     </Grid>
 </Window>

@@ -4,17 +4,17 @@
 winexe
 C#
 .cs
-D:\Programm\Projects\Kursach\obj\Debug\
+D:\Рабочий стол\Kursach\obj\Debug\
 Kursach
 none
 false
 DEBUG;TRACE
-D:\Programm\Projects\Kursach\App.xaml
-1-1411483415
+D:\Рабочий стол\Kursach\App.xaml
+2-1425318318
 
-51957558215
-13-75431766
-HomeWindow.xaml;
+71805200525
+18-258640523
+HomeWindow.xaml;LoginWindow.xaml;
 
-False
+True
 

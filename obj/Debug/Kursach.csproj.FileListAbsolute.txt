@@ -13,3 +13,52 @@ D:\Programm\Projects\Kursach\obj\Debug\Kursach.exe
 D:\Programm\Projects\Kursach\obj\Debug\Kursach.pdb
 D:\Programm\Projects\Kursach\obj\Debug\HomeWindow.g.cs
 D:\Programm\Projects\Kursach\obj\Debug\HomeWindow.baml
+C:\Users\студент\Desktop\Kursach\bin\Debug\Kursach.exe.config
+C:\Users\студент\Desktop\Kursach\bin\Debug\Kursach.exe
+C:\Users\студент\Desktop\Kursach\bin\Debug\Kursach.pdb
+C:\Users\студент\Desktop\Kursach\bin\Debug\EntityFramework.dll
+C:\Users\студент\Desktop\Kursach\bin\Debug\EntityFramework.SqlServer.dll
+C:\Users\студент\Desktop\Kursach\bin\Debug\EntityFramework.xml
+C:\Users\студент\Desktop\Kursach\bin\Debug\EntityFramework.SqlServer.xml
+C:\Users\студент\Desktop\Kursach\bin\Debug\ru\EntityFramework.resources.dll
+C:\Users\студент\Desktop\Kursach\obj\Debug\Kursach.csprojAssemblyReference.cache
+C:\Users\студент\Desktop\Kursach\obj\Debug\HomeWindow.g.cs
+C:\Users\студент\Desktop\Kursach\obj\Debug\LoginWindow.g.cs
+C:\Users\студент\Desktop\Kursach\obj\Debug\App.g.cs
+C:\Users\студент\Desktop\Kursach\obj\Debug\Kursach_Content.g.cs
+C:\Users\студент\Desktop\Kursach\obj\Debug\Kursach_MarkupCompile.cache
+C:\Users\студент\Desktop\Kursach\obj\Debug\Kursach_MarkupCompile.lref
+C:\Users\студент\Desktop\Kursach\obj\Debug\HomeWindow.baml
+C:\Users\студент\Desktop\Kursach\obj\Debug\LoginWindow.baml
+C:\Users\студент\Desktop\Kursach\obj\Debug\Kursach.g.resources
+C:\Users\студент\Desktop\Kursach\obj\Debug\Kursach.Properties.Resources.resources
+C:\Users\студент\Desktop\Kursach\obj\Debug\Kursach.csproj.GenerateResource.cache
+C:\Users\студент\Desktop\Kursach\obj\Debug\Kursach.csproj.CoreCompileInputs.cache
+C:\Users\студент\Desktop\Kursach\obj\Debug\Kursach.csproj.CopyComplete
+C:\Users\студент\Desktop\Kursach\obj\Debug\Kursach.exe
+C:\Users\студент\Desktop\Kursach\obj\Debug\Kursach.pdb
+D:\Рабочий стол\Kursach\bin\Debug\Kursach.exe.config
+D:\Рабочий стол\Kursach\bin\Debug\Kursach.exe
+D:\Рабочий стол\Kursach\bin\Debug\Kursach.pdb
+D:\Рабочий стол\Kursach\bin\Debug\EntityFramework.dll
+D:\Рабочий стол\Kursach\bin\Debug\EntityFramework.SqlServer.dll
+D:\Рабочий стол\Kursach\bin\Debug\EntityFramework.xml
+D:\Рабочий стол\Kursach\bin\Debug\EntityFramework.SqlServer.xml
+D:\Рабочий стол\Kursach\bin\Debug\ru\EntityFramework.resources.dll
+D:\Рабочий стол\Kursach\obj\Debug\Kursach.csproj.AssemblyReference.cache
+D:\Рабочий стол\Kursach\obj\Debug\Kursach.csproj.SuggestedBindingRedirects.cache
+D:\Рабочий стол\Kursach\obj\Debug\HomeWindow.g.cs
+D:\Рабочий стол\Kursach\obj\Debug\LoginWindow.g.cs
+D:\Рабочий стол\Kursach\obj\Debug\App.g.cs
+D:\Рабочий стол\Kursach\obj\Debug\Kursach_Content.g.cs
+D:\Рабочий стол\Kursach\obj\Debug\Kursach_MarkupCompile.cache
+D:\Рабочий стол\Kursach\obj\Debug\Kursach_MarkupCompile.lref
+D:\Рабочий стол\Kursach\obj\Debug\HomeWindow.baml
+D:\Рабочий стол\Kursach\obj\Debug\LoginWindow.baml
+D:\Рабочий стол\Kursach\obj\Debug\Kursach.g.resources
+D:\Рабочий стол\Kursach\obj\Debug\Kursach.Properties.Resources.resources
+D:\Рабочий стол\Kursach\obj\Debug\Kursach.csproj.GenerateResource.cache
+D:\Рабочий стол\Kursach\obj\Debug\Kursach.csproj.CoreCompileInputs.cache
+D:\Рабочий стол\Kursach\obj\Debug\Kursach.csproj.CopyComplete
+D:\Рабочий стол\Kursach\obj\Debug\Kursach.exe
+D:\Рабочий стол\Kursach\obj\Debug\Kursach.pdb
