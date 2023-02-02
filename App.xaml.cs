@@ -13,6 +13,6 @@ namespace Kursach
     /// </summary>
     public partial class App : Application
     {
-        public static KinoEntities DB = new KinoEntities();
+        public static KinoEntities1 db = new KinoEntities1();
     }
 }

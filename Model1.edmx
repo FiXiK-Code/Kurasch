@@ -1,0 +1,363 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="Хранилище KinoModel" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <!--Ошибки, обнаруженные при создании:
+предупреждение 6002: В таблице или представлении "Kino.dbo.admin" не определен первичный ключ. Ключ был выведен, а определение таблицы или представления было создано в режиме только для чтения.-->
+        <EntityType Name="admin">
+          <Key>
+            <PropertyRef Name="id" />
+            <PropertyRef Name="name" />
+            <PropertyRef Name="login" />
+            <PropertyRef Name="password" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="name" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="login" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="password" Type="varchar" MaxLength="6" Nullable="false" />
+        </EntityType>
+        <!--Ошибки, обнаруженные при создании:
+предупреждение 6002: В таблице или представлении "Kino.dbo.afish" не определен первичный ключ. Ключ был выведен, а определение таблицы или представления было создано в режиме только для чтения.-->
+        <EntityType Name="afish">
+          <Key>
+            <PropertyRef Name="id" />
+            <PropertyRef Name="name" />
+            <PropertyRef Name="length" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="name" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="length" Type="time" Precision="7" Nullable="false" />
+        </EntityType>
+        <!--Ошибки, обнаруженные при создании:
+предупреждение 6002: В таблице или представлении "Kino.dbo.kassir" не определен первичный ключ. Ключ был выведен, а определение таблицы или представления было создано в режиме только для чтения.-->
+        <EntityType Name="kassir">
+          <Key>
+            <PropertyRef Name="id" />
+            <PropertyRef Name="name" />
+            <PropertyRef Name="login" />
+            <PropertyRef Name="password" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="name" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="login" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="password" Type="varchar" MaxLength="6" Nullable="false" />
+        </EntityType>
+        <!--Ошибки, обнаруженные при создании:
+предупреждение 6002: В таблице или представлении "Kino.dbo.otchot" не определен первичный ключ. Ключ был выведен, а определение таблицы или представления было создано в режиме только для чтения.-->
+        <EntityType Name="otchot">
+          <Key>
+            <PropertyRef Name="id" />
+            <PropertyRef Name="mes" />
+            <PropertyRef Name="countTicket" />
+            <PropertyRef Name="sumTicketPrice" />
+            <PropertyRef Name="sumProdPrice" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="mes" Type="int" Nullable="false" />
+          <Property Name="countTicket" Type="int" Nullable="false" />
+          <Property Name="sumTicketPrice" Type="int" Nullable="false" />
+          <Property Name="sumProdPrice" Type="int" Nullable="false" />
+        </EntityType>
+        <!--Ошибки, обнаруженные при создании:
+предупреждение 6002: В таблице или представлении "Kino.dbo.seans" не определен первичный ключ. Ключ был выведен, а определение таблицы или представления было создано в режиме только для чтения.-->
+        <EntityType Name="seans">
+          <Key>
+            <PropertyRef Name="id" />
+            <PropertyRef Name="afish_id" />
+            <PropertyRef Name="zall_id" />
+            <PropertyRef Name="price" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="afish_id" Type="int" Nullable="false" />
+          <Property Name="zall_id" Type="int" Nullable="false" />
+          <Property Name="selectPlant" Type="varchar" MaxLength="500" />
+          <Property Name="time" Type="varchar" MaxLength="13" />
+          <Property Name="price" Type="int" Nullable="false" />
+        </EntityType>
+        <!--Ошибки, обнаруженные при создании:
+предупреждение 6002: В таблице или представлении "Kino.dbo.snacks" не определен первичный ключ. Ключ был выведен, а определение таблицы или представления было создано в режиме только для чтения.-->
+        <EntityType Name="snacks">
+          <Key>
+            <PropertyRef Name="id" />
+            <PropertyRef Name="name" />
+            <PropertyRef Name="tara" />
+            <PropertyRef Name="price" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="name" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="tara" Type="varchar" MaxLength="5" Nullable="false" />
+          <Property Name="price" Type="int" Nullable="false" />
+        </EntityType>
+        <!--Ошибки, обнаруженные при создании:
+предупреждение 6002: В таблице или представлении "Kino.dbo.zall" не определен первичный ключ. Ключ был выведен, а определение таблицы или представления было создано в режиме только для чтения.-->
+        <EntityType Name="zall">
+          <Key>
+            <PropertyRef Name="id" />
+            <PropertyRef Name="countRyd" />
+            <PropertyRef Name="countPlant" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="countRyd" Type="int" Nullable="false" />
+          <Property Name="countPlant" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityContainer Name="Хранилище KinoModelContainer">
+          <EntitySet Name="admin" EntityType="Self.admin" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [admin].[id] AS [id], 
+    [admin].[name] AS [name], 
+    [admin].[login] AS [login], 
+    [admin].[password] AS [password]
+    FROM [dbo].[admin] AS [admin]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="afish" EntityType="Self.afish" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [afish].[id] AS [id], 
+    [afish].[name] AS [name], 
+    [afish].[length] AS [length]
+    FROM [dbo].[afish] AS [afish]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="kassir" EntityType="Self.kassir" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [kassir].[id] AS [id], 
+    [kassir].[name] AS [name], 
+    [kassir].[login] AS [login], 
+    [kassir].[password] AS [password]
+    FROM [dbo].[kassir] AS [kassir]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="otchot" EntityType="Self.otchot" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [otchot].[id] AS [id], 
+    [otchot].[mes] AS [mes], 
+    [otchot].[countTicket] AS [countTicket], 
+    [otchot].[sumTicketPrice] AS [sumTicketPrice], 
+    [otchot].[sumProdPrice] AS [sumProdPrice]
+    FROM [dbo].[otchot] AS [otchot]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="seans" EntityType="Self.seans" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [seans].[id] AS [id], 
+    [seans].[afish_id] AS [afish_id], 
+    [seans].[zall_id] AS [zall_id], 
+    [seans].[selectPlant] AS [selectPlant], 
+    [seans].[time] AS [time], 
+    [seans].[price] AS [price]
+    FROM [dbo].[seans] AS [seans]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="snacks" EntityType="Self.snacks" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [snacks].[id] AS [id], 
+    [snacks].[name] AS [name], 
+    [snacks].[tara] AS [tara], 
+    [snacks].[price] AS [price]
+    FROM [dbo].[snacks] AS [snacks]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="zall" EntityType="Self.zall" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [zall].[id] AS [id], 
+    [zall].[countRyd] AS [countRyd], 
+    [zall].[countPlant] AS [countPlant]
+    FROM [dbo].[zall] AS [zall]</DefiningQuery>
+          </EntitySet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="KinoModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="admin">
+          <Key>
+            <PropertyRef Name="id" />
+            <PropertyRef Name="name" />
+            <PropertyRef Name="login" />
+            <PropertyRef Name="password" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="login" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="password" Type="String" MaxLength="6" FixedLength="false" Unicode="false" Nullable="false" />
+        </EntityType>
+        <EntityType Name="afish">
+          <Key>
+            <PropertyRef Name="id" />
+            <PropertyRef Name="name" />
+            <PropertyRef Name="length" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="name" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="length" Type="Time" Nullable="false" Precision="7" />
+        </EntityType>
+        <EntityType Name="kassir">
+          <Key>
+            <PropertyRef Name="id" />
+            <PropertyRef Name="name" />
+            <PropertyRef Name="login" />
+            <PropertyRef Name="password" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="login" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="password" Type="String" MaxLength="6" FixedLength="false" Unicode="false" Nullable="false" />
+        </EntityType>
+        <EntityType Name="otchot">
+          <Key>
+            <PropertyRef Name="id" />
+            <PropertyRef Name="mes" />
+            <PropertyRef Name="countTicket" />
+            <PropertyRef Name="sumTicketPrice" />
+            <PropertyRef Name="sumProdPrice" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="mes" Type="Int32" Nullable="false" />
+          <Property Name="countTicket" Type="Int32" Nullable="false" />
+          <Property Name="sumTicketPrice" Type="Int32" Nullable="false" />
+          <Property Name="sumProdPrice" Type="Int32" Nullable="false" />
+        </EntityType>
+        <EntityType Name="seans">
+          <Key>
+            <PropertyRef Name="id" />
+            <PropertyRef Name="afish_id" />
+            <PropertyRef Name="zall_id" />
+            <PropertyRef Name="price" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="afish_id" Type="Int32" Nullable="false" />
+          <Property Name="zall_id" Type="Int32" Nullable="false" />
+          <Property Name="selectPlant" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Name="time" Type="String" MaxLength="13" FixedLength="false" Unicode="false" />
+          <Property Name="price" Type="Int32" Nullable="false" />
+        </EntityType>
+        <EntityType Name="snacks">
+          <Key>
+            <PropertyRef Name="id" />
+            <PropertyRef Name="name" />
+            <PropertyRef Name="tara" />
+            <PropertyRef Name="price" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="name" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="tara" Type="String" MaxLength="5" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="price" Type="Int32" Nullable="false" />
+        </EntityType>
+        <EntityType Name="zall">
+          <Key>
+            <PropertyRef Name="id" />
+            <PropertyRef Name="countRyd" />
+            <PropertyRef Name="countPlant" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="countRyd" Type="Int32" Nullable="false" />
+          <Property Name="countPlant" Type="Int32" Nullable="false" />
+        </EntityType>
+        <EntityContainer Name="KinoEntities1" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="admin" EntityType="Self.admin" />
+          <EntitySet Name="afish" EntityType="Self.afish" />
+          <EntitySet Name="kassir" EntityType="Self.kassir" />
+          <EntitySet Name="otchot" EntityType="Self.otchot" />
+          <EntitySet Name="seans" EntityType="Self.seans" />
+          <EntitySet Name="snacks" EntityType="Self.snacks" />
+          <EntitySet Name="zall" EntityType="Self.zall" />
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="Хранилище KinoModelContainer" CdmEntityContainer="KinoEntities1">
+          <EntitySetMapping Name="admin">
+            <EntityTypeMapping TypeName="KinoModel.admin">
+              <MappingFragment StoreEntitySet="admin">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="login" ColumnName="login" />
+                <ScalarProperty Name="password" ColumnName="password" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="afish">
+            <EntityTypeMapping TypeName="KinoModel.afish">
+              <MappingFragment StoreEntitySet="afish">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="length" ColumnName="length" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="kassir">
+            <EntityTypeMapping TypeName="KinoModel.kassir">
+              <MappingFragment StoreEntitySet="kassir">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="login" ColumnName="login" />
+                <ScalarProperty Name="password" ColumnName="password" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="otchot">
+            <EntityTypeMapping TypeName="KinoModel.otchot">
+              <MappingFragment StoreEntitySet="otchot">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="mes" ColumnName="mes" />
+                <ScalarProperty Name="countTicket" ColumnName="countTicket" />
+                <ScalarProperty Name="sumTicketPrice" ColumnName="sumTicketPrice" />
+                <ScalarProperty Name="sumProdPrice" ColumnName="sumProdPrice" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="seans">
+            <EntityTypeMapping TypeName="KinoModel.seans">
+              <MappingFragment StoreEntitySet="seans">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="afish_id" ColumnName="afish_id" />
+                <ScalarProperty Name="zall_id" ColumnName="zall_id" />
+                <ScalarProperty Name="selectPlant" ColumnName="selectPlant" />
+                <ScalarProperty Name="time" ColumnName="time" />
+                <ScalarProperty Name="price" ColumnName="price" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="snacks">
+            <EntityTypeMapping TypeName="KinoModel.snacks">
+              <MappingFragment StoreEntitySet="snacks">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="tara" ColumnName="tara" />
+                <ScalarProperty Name="price" ColumnName="price" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="zall">
+            <EntityTypeMapping TypeName="KinoModel.zall">
+              <MappingFragment StoreEntitySet="zall">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="countRyd" ColumnName="countRyd" />
+                <ScalarProperty Name="countPlant" ColumnName="countPlant" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="Нет" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

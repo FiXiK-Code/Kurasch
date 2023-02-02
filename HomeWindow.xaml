@@ -14,14 +14,14 @@
                     <SolidColorBrush Color="Black" Opacity="0.23"/>
                 </Grid.Background>
             </Grid>
-            <TextBlock x:Name="NameFlim_SelectPlant" HorizontalAlignment="Left" Height="31" Margin="28,10,0,0" TextWrapping="Wrap" Text="Название: Какое-то длинное название фильма" VerticalAlignment="Top" Width="519" FontSize="20"/>
+            <TextBlock x:Name="NameFlim_SelectPlant" HorizontalAlignment="Left" Height="54" Margin="28,10,0,0" TextWrapping="Wrap" Text="Название: Какое-то длинное название фильма которое не помещается в одну строку" VerticalAlignment="Top" Width="519" FontSize="20"/>
             <TextBlock HorizontalAlignment="Left" Height="31" Margin="581,10,0,0" TextWrapping="Wrap" Text="Цена билета:" VerticalAlignment="Top" Width="123" FontSize="20"/>
-            <Button x:Name="btn" Background="Green" HorizontalAlignment="Left" Margin="138,49,0,0" VerticalAlignment="Top" Width="20" Height="20" RenderTransformOrigin="0.729,0.763" Click="btn_Click"/>
-            <Label Content="- Свободные места:" HorizontalAlignment="Left" Margin="159,46,0,0" VerticalAlignment="Top"/>
-            <Button Background="Red" HorizontalAlignment="Left" Margin="353,49,0,0" VerticalAlignment="Top" Width="20" Height="20" RenderTransformOrigin="0.729,0.763"/>
-            <Label Content="- Занято" HorizontalAlignment="Left" Margin="374,46,0,0" VerticalAlignment="Top" Width="55"/>
-            <Label Content="Зал №" HorizontalAlignment="Left" Margin="31,46,0,0" VerticalAlignment="Top"/>
-            <Label x:Name="GreenPlant" Content="50" HorizontalAlignment="Left" Margin="277,46,0,0" VerticalAlignment="Top" Width="25"/>
+            <Button x:Name="btn" Background="Green" HorizontalAlignment="Left" Margin="143,84,0,0" VerticalAlignment="Top" Width="20" Height="20" RenderTransformOrigin="0.5,0.5" Click="btn_Click_1"/>
+            <Label Content="- Свободные места:" HorizontalAlignment="Left" Margin="164,81,0,0" VerticalAlignment="Top"/>
+            <Button Background="Red" HorizontalAlignment="Left" Margin="358,84,0,0" VerticalAlignment="Top" Width="20" Height="20" RenderTransformOrigin="0.729,0.763"/>
+            <Label Content="- Занято" HorizontalAlignment="Left" Margin="379,81,0,0" VerticalAlignment="Top" Width="55"/>
+            <Label Content="Зал №" HorizontalAlignment="Left" Margin="36,81,0,0" VerticalAlignment="Top"/>
+            <Label x:Name="GreenPlant" Content="50" HorizontalAlignment="Left" Margin="282,81,0,0" VerticalAlignment="Top" Width="25"/>
             <TextBlock HorizontalAlignment="Left" Height="25" Margin="18,135,0,0" TextWrapping="Wrap" Text="Ряд 1" VerticalAlignment="Top" Width="54" TextAlignment="Right"/>
             <TextBlock HorizontalAlignment="Left" Height="25" Margin="18,165,0,0" TextWrapping="Wrap" Text="Ряд 2" VerticalAlignment="Top" Width="54" TextAlignment="Right"/>
             <TextBlock HorizontalAlignment="Left" Height="25" Margin="18,195,0,0" TextWrapping="Wrap" Text="Ряд 3" VerticalAlignment="Top" Width="54" TextAlignment="Right"/>
@@ -31,28 +31,25 @@
             <TextBlock HorizontalAlignment="Left" Height="25" Margin="18,315,0,0" TextWrapping="Wrap" Text="Ряд 7" VerticalAlignment="Top" Width="54" TextAlignment="Right"/>
             <TextBlock HorizontalAlignment="Left" Height="25" Margin="18,345,0,0" TextWrapping="Wrap" Text="Ряд 8" VerticalAlignment="Top" Width="54" TextAlignment="Right"/>
             <TextBlock HorizontalAlignment="Left" Height="25" Margin="18,375,0,0" TextWrapping="Wrap" Text="Ряд 9" VerticalAlignment="Top" Width="54" TextAlignment="Right"/>
-            <Label x:Name="numZal_SelPlant" Content="5" HorizontalAlignment="Left" Margin="75,46,0,0" VerticalAlignment="Top"/>
+            <Label x:Name="numZal_SelPlant" Content="5" HorizontalAlignment="Left" Margin="80,81,0,0" VerticalAlignment="Top"/>
             <TextBlock x:Name="prise_SelPlant" HorizontalAlignment="Left" Height="31" Margin="713,10,0,0" TextWrapping="Wrap" Text="500р" VerticalAlignment="Top" Width="71" FontSize="20"/>
         </Grid>
         <Grid x:Name="Home"   HorizontalAlignment="Left" Height="420" VerticalAlignment="Top" Width="794" Margin="-10,-2,0,0" d:IsHidden="True">
-            <ListBox x:Name="list_afish" HorizontalAlignment="Left" Height="280" Margin="35,113,0,0" VerticalAlignment="Top" Width="429" SelectionChanged="list_afish_SelectionChanged" FontSize="20">
-                <TextBlock Text="1 str
-                           sdf
-                           sdfsdfsdfsdfsdfsfsdf"/>
-            </ListBox>
-            <TextBox x:Name="poisk_afish" HorizontalAlignment="Left" Height="40" Margin="35,54,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="429" FontSize="20" TextChanged="poisk_afish_TextChanged"/>
-            <ComboBox x:Name="CB_Time" HorizontalAlignment="Left" Margin="497,115,0,0" VerticalAlignment="Top" Width="287" Height="43" SelectionChanged="CB_Time_SelectionChanged">
+            <ListBox x:Name="list_afish" HorizontalAlignment="Left" Height="280" Margin="35,113,0,0" VerticalAlignment="Top" Width="429" SelectionChanged="list_afish_SelectionChanged" FontSize="20"/>
+            <TextBox x:Name="poisk_afish" HorizontalAlignment="Left" Height="40" Margin="35,54,0,0" TextWrapping="Wrap" Text="поиск" VerticalAlignment="Top" Width="429" FontSize="20" TextChanged="poisk_afish_TextChanged"/>
+            <ComboBox x:Name="CB_Time" HorizontalAlignment="Left" Margin="497,161,0,0" VerticalAlignment="Top" Width="287" Height="43" SelectionChanged="CB_Time_SelectionChanged">
                 <TextBlock Text="11:00 - 13:50" FontSize="16"/>
                 <TextBlock Text="14:00 - 16:50" FontSize="16"/>
                 <TextBlock Text="17:30 - 20:20" FontSize="16"/>
                 <TextBlock Text="23:00 - 01:50" FontSize="16"/>
             </ComboBox>
             <Button x:Name="GoToPlentSelect" Content="Выбрать места" HorizontalAlignment="Left" Margin="557,338,0,0" VerticalAlignment="Top" Width="227" Height="55" Click="GoToPlentSelect_Click" FontSize="20"/>
-            <TextBlock x:Name="NameFillm_Home" HorizontalAlignment="Left" Margin="497,43,0,0" TextWrapping="Wrap" Text="12:50" VerticalAlignment="Top" Height="67" Width="287" FontSize="20"/>
-            <TextBlock HorizontalAlignment="Left" Margin="497,183,0,0" TextWrapping="Wrap" VerticalAlignment="Top" FontSize="20" Text="Цена билета:"/>
-            <TextBlock HorizontalAlignment="Left" Margin="497,240,0,0" TextWrapping="Wrap" VerticalAlignment="Top" FontSize="20" Text="Свободных мест:"/>
-            <TextBlock x:Name="prise_Home" HorizontalAlignment="Left" Margin="673,183,0,0" TextWrapping="Wrap" VerticalAlignment="Top" FontSize="20" Text="500р"/>
-            <TextBlock x:Name="OpenPlant_Home" HorizontalAlignment="Left" Margin="695,238,0,0" TextWrapping="Wrap" VerticalAlignment="Top" FontSize="20" Text="40"/>
+            <TextBlock x:Name="NameFillm_Home" HorizontalAlignment="Left" Margin="497,29,0,0" TextWrapping="Wrap" Text="название фильма" VerticalAlignment="Top" Height="81" Width="287" FontSize="20"/>
+            <TextBlock HorizontalAlignment="Left" Margin="497,229,0,0" TextWrapping="Wrap" VerticalAlignment="Top" FontSize="20" Text="Цена билета:"/>
+            <TextBlock HorizontalAlignment="Left" Margin="497,286,0,0" TextWrapping="Wrap" VerticalAlignment="Top" FontSize="20" Text="Свободных мест:"/>
+            <TextBlock x:Name="prise_Home" HorizontalAlignment="Left" Margin="673,229,0,0" TextWrapping="Wrap" VerticalAlignment="Top" FontSize="20" Text="500р"/>
+            <TextBlock x:Name="OpenPlant_Home" HorizontalAlignment="Left" Margin="695,284,0,0" TextWrapping="Wrap" VerticalAlignment="Top" FontSize="20" Text="40"/>
+            <TextBlock HorizontalAlignment="Left" Margin="497,115,0,0" TextWrapping="Wrap" VerticalAlignment="Top" FontSize="20" Text="Время сеанса:"/>
         </Grid>
         <Grid x:Name="snacks"   HorizontalAlignment="Left" Height="420" VerticalAlignment="Top" Width="794" Margin="0,0,-0.4,0" d:IsHidden="True">
             <Button x:Name="GoToOpalata" Content="Продолжить" HorizontalAlignment="Left" Margin="656,19,0,0" VerticalAlignment="Top" Width="128" Height="28" FontSize="16" Click="GoToOpalata_Click"/>

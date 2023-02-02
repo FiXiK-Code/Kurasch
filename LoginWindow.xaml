@@ -13,7 +13,7 @@
             <Button x:Name="login" Content="Button" HorizontalAlignment="Left" Margin="124,269,0,0" VerticalAlignment="Top" Width="182" Height="40" Click="login_Click"/>
             <Button x:Name="selectorBack" Content="Отмена" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Width="75" Click="selectorBack_Click"/>
         </Grid>
-        <Grid x:Name="selector" HorizontalAlignment="Left" Height="397" VerticalAlignment="Top" Width="403" Margin="0,0,0,-0.2" d:IsHidden="True">
+        <Grid x:Name="selector" HorizontalAlignment="Left" Height="397" VerticalAlignment="Top" Width="403" Margin="0,0,0,-0.2">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="16*"/>
                 <ColumnDefinition Width="387*"/>
@@ -29,12 +29,12 @@
         </Grid>
         <Grid x:Name="listKassir" HorizontalAlignment="Left" Height="397" VerticalAlignment="Top" Width="403" Margin="0,0,0,-0.2" d:IsHidden="True">
             <Button x:Name="listKassirBack" Content="Назад" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Width="75" FontSize="20" Click="listKassirBack_Click"/>
-            <ListBox x:Name="ListBox_Kassir" HorizontalAlignment="Left" Height="264" Margin="10,45,0,0" VerticalAlignment="Top" Width="383" FontSize="20"/>
             <Button x:Name="lisatKassirAdd" Content="Добавить" HorizontalAlignment="Left" Margin="110,351,0,0" VerticalAlignment="Top" Width="184" Height="32" FontSize="20" Click="lisatKassirAdd_Click"/>
             <Button x:Name="listKassirRedact" Content="Редактировать" HorizontalAlignment="Left" Margin="10,314,0,0" VerticalAlignment="Top" Width="184" Height="32" FontSize="20" Click="listKassirRedact_Click"/>
             <Button x:Name="listKassirDelete" Content="Удалить" HorizontalAlignment="Left" Margin="209,314,0,0" VerticalAlignment="Top" Width="184" Height="32" FontSize="20" Click="listKassirDelete_Click"/>
+            <DataGrid x:Name="DGKassir" HorizontalAlignment="Left" Height="249" Margin="26,60,0,0" VerticalAlignment="Top" Width="353"/>
         </Grid>
-        <Grid x:Name="kassir"  HorizontalAlignment="Left" Height="397" VerticalAlignment="Top" Width="403" Margin="0,0,0,-0.2">
+        <Grid x:Name="kassir"  HorizontalAlignment="Left" Height="397" VerticalAlignment="Top" Width="403" Margin="0,0,0,-0.2" d:IsHidden="True">
             <TextBox x:Name="Kassir_fio" HorizontalAlignment="Left" Height="58" Margin="99,71,0,0" TextWrapping="Wrap" Text="Иванов Иван Иванович" VerticalContentAlignment="Center" VerticalAlignment="Top" Width="294" FontSize="20" TextAlignment="Center"/>
             <TextBlock HorizontalAlignment="Left" Margin="10,87,0,0" TextWrapping="Wrap" Text="ФИО:" VerticalAlignment="Top" Height="29" Width="84" FontSize="20" />
             <TextBox x:Name="Kassir_login" HorizontalAlignment="Left" Height="58" Margin="99,137,0,0" TextWrapping="Wrap" Text="логин" VerticalContentAlignment="Center" VerticalAlignment="Top" Width="294" FontSize="20" TextAlignment="Center"/>
@@ -46,9 +46,29 @@
         </Grid>
         <Grid x:Name="otchot" HorizontalAlignment="Left" Height="397" VerticalAlignment="Top" Width="403" Margin="0,0,0,-0.2" d:IsHidden="True">
             <Button x:Name="otchotBack" Content="Назад" HorizontalAlignment="Left" Margin="10,8,0,0" VerticalAlignment="Top" Width="86" Height="32" FontSize="20" Click="otchotBack_Click"/>
-            <ComboBox x:Name="MonthCB" HorizontalAlignment="Left" Margin="188,101,0,0" VerticalAlignment="Top" Width="141" FontSize="20" SelectionChanged="MonthCB_SelectionChanged"/>
-            <TextBlock HorizontalAlignment="Left" Margin="71,101,0,0" TextWrapping="Wrap" VerticalAlignment="Top" FontSize="20"><Run Text="Месяц"/><Run Text=":"/></TextBlock>
-            <DataGrid x:Name="DataGrid_Othot" HorizontalAlignment="Left" Height="127" Margin="10,161,0,0" VerticalAlignment="Top" Width="383"/>
+            <TextBlock HorizontalAlignment="Left" Margin="70,61,0,0" TextWrapping="Wrap" VerticalAlignment="Top" FontSize="20"><Run Text="Месяц"/><Run Text=":"/></TextBlock>
+            <DataGrid x:Name="DGOthot" HorizontalAlignment="Left" Height="127" Margin="10,161,0,0" VerticalAlignment="Top" Width="383"/>
+            <ComboBox x:Name="YearCB" HorizontalAlignment="Left" Margin="187,103,0,0" VerticalAlignment="Top" Width="141" FontSize="20" SelectionChanged="YearCB_SelectionChanged">
+                <TextBlock Text="2022"/>
+                <TextBlock Text="2023"/>
+                <TextBlock Text="2024"/>
+                <TextBlock Text="2025"/>
+            </ComboBox>
+            <TextBlock HorizontalAlignment="Left" Margin="70,109,0,0" TextWrapping="Wrap" VerticalAlignment="Top" FontSize="20" Text="Год:"/>
+            <ComboBox x:Name="MonthCB" HorizontalAlignment="Left" Margin="187,55,0,0" VerticalAlignment="Top" Width="141" FontSize="20" SelectionChanged="MonthCB_SelectionChanged">
+                <TextBlock Text="Январь"/>
+                <TextBlock Text="Февраль"/>
+                <TextBlock Text="Март"/>
+                <TextBlock Text="Апрель"/>
+                <TextBlock Text="Май"/>
+                <TextBlock Text="Июнь"/>
+                <TextBlock Text="Июль"/>
+                <TextBlock Text="Август"/>
+                <TextBlock Text="Сентябрь"/>
+                <TextBlock Text="Октябрь"/>
+                <TextBlock Text="Ноябрь"/>
+                <TextBlock Text="Декабрь"/>
+            </ComboBox>
         </Grid>
         <Grid x:Name="ListAfiah" d:IsHidden="True">
             <Button x:Name="AfishaBack" Content="Назад" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Width="75" FontSize="20" Click="AfishaBack_Click"/>

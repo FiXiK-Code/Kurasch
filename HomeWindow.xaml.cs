@@ -25,15 +25,16 @@ namespace Kursach
         public void UpdateAfiashaList(string poisk = "")
         {
             list_afish.Items.Clear();
-            var database = App.DB.afisha.ToList();
-            if(poisk != "") database = App.DB.afisha.Where(p => p.name.Contains(poisk)).ToList();
+            var database = App.db.afish.ToList();
+            if(poisk != "") database = App.db.afish.Where(p => p.name.Contains(poisk)).ToList();
             foreach(var db in database)
             {
                 list_afish.Items.Add( new TextBlock(){
                   HorizontalAlignment = HorizontalAlignment.Left,
                   TextWrapping = TextWrapping.Wrap,
-                  Text = db.name,//доаолнять тут через 'перренос строки?'
-                   TextAlignment = TextAlignment.Left
+                  Text = db.name,
+                   TextAlignment = TextAlignment.Left,
+                   FontSize = 20
               }
               );
             }
@@ -43,8 +44,7 @@ namespace Kursach
        
         public void UpdateSnacksList()
         {
-            list_afish.Items.Clear();
-            var database = App.DB.snack.ToList();
+            var database = App.db.snacks.OrderBy(p => p.name).ToList();
             SnacksGrid.ItemsSource = database;
         }
 
@@ -59,47 +59,52 @@ namespace Kursach
 
         private void list_afish_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            //// обращение к бд чтобы взять данные о времени сеансов
-            ///передача названия в NameFillm_Home
+            //\\\ обращение к бд чтобы взять данные о времени сеансов
+            //\\\\ передача названия в NameFillm_Home
 
-            var database = App.DB.seansi.ToList();
+            NameFillm_Home.Text = list_afish.SelectedItem.ToString();
+
+            var database = App.db.seans.Where(p => p.afish_id == App.db.afish.FirstOrDefault(o => o.name == NameFillm_Home.Text.ToString()).id).OrderBy(p => p.time).ToList();
             foreach(var time in database)
             {
-                CB_Time.Items.Add(time.ToString());
+                CB_Time.Items.Add(time.time);
             }
 
-            NameFillm_Home.Text = list_afish.SelectedItem.ToString();//настроить, возможно придется выирать именно текст, либо разбивать строку
         }
 
         private void CB_Time_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            ///// Обращение к бд чтобы взять цену билета и количество свободных мест
+            //\\\\ Обращение к бд чтобы взять цену билета
+            // количество свободных мест
 
-            var database = App.DB.seansi.FirstOnDefault(p => p.seans == NameFillm_Home.Text).ToList();//паправить where
+            var database = App.db.seans.FirstOrDefault(p => p.afish_id == App.db.afish.FirstOrDefault(o => o.name == NameFillm_Home.Text).id 
+            && p.time == CB_Time.SelectedItem.ToString());
 
-            prise_Home.Text = database.prise.ToString();
-            OpenPlant_Home.Text = database.OpenPlant.ToString();
+            prise_Home.Text = database.price.ToString();
+            //OpenPlant_Home.Text = database.openPlant.ToString();
         }
 
         private void GoToPlentSelect_Click(object sender, RoutedEventArgs e)
         {
-            //\ название фильма из NameFillm_Home
+            //\\\ название фильма из NameFillm_Home
             // DB >> свободные и занятые  места
-            //\ >> цена билета
-            //\ >> номер зала  и количество мест
-            //передача в буффер выбранных мест (клик по месту)
+            //\\\ >> цена билета
+            //\\ >> номер зала  и количество мест
+
+            var seans = App.db.seans.FirstOrDefault(p => p.afish_id == App.db.afish.FirstOrDefault(o => o.name == NameFillm_Home.Text).id);
 
             NameFlim_SelectPlant.Text = NameFillm_Home.Text.ToString();
             prise_SelPlant.Text = prise_Home.Text.ToString();
-            numZal_SelPlant.Content = "5";//from db
+            numZal_SelPlant.Content = seans.zall_id.ToString();
+
+            //GreenPlant.Content = seans.openPlant.ToString();
 
             int j = 0;
             int k = 0;
-            // in Buff Static class //var numZall = App.DB.seans.FirstOrDefault(p => p.afish_id == Buff.SelectAfish).numZal;
-            //var zall = App.DB.zal.FirstOnDefault(p => p.num == Buff.numZall); zall.rad * zall.plantInRad
-            for (int i = 0; i < 20 * 9; ++i)
+            var zall = App.db.zall.FirstOrDefault(p => p.id == seans.zall_id); 
+            for (int i = 0; i < zall.countRyd * zall.countPlant; ++i)
             {
-                if (i % 20 == 0 && i != 0) { j++; k = 0; }
+                if (i % zall.countPlant == 0 && i != 0) { j++; k = 0; }
 
                 Button button = new Button()
                 {
@@ -141,7 +146,7 @@ namespace Kursach
         private void endSelectionPlent_Click(object sender, RoutedEventArgs e)
         {
             // заполнение чека оплаты, данные из буфера выбранных мест + (int)prise_SelPlant
-            //\/\/ заполнение таблицы со снеками из бд (updateFunction)
+            //\\\\ заполнение таблицы со снеками из бд (updateFunction)
             // заполнение чека оплаты в виде: "билеты" - количество - сумма
 
             UpdateSnacksList();
@@ -160,27 +165,27 @@ namespace Kursach
 
         private void AddSnackToList_Click(object sender, RoutedEventArgs e)
         {
-            // пере давть выбранный элемент SnacksGrid в SnacksList с учетом количества
-            //\ (int)CountSnacks (для рассчта цены)
-            // попробовать реализовать кастомную таблицу (name\count\SumPrise)
-            // вид чека как для оплаты снек - количество - сумма
-            var content = ((snack)SnacksGrid.SelectedItem).name + $"   Количество: {CountSnacks.Text} "
-                + (((snack)SnacksGrid.SelectedItem).prise * Convert.ToInt32(CountSnacks.Text)).ToString();
+            //\\\ передавть выбранный элемент SnacksGrid в SnacksList с учетом количества
+            //\\\\ (int)CountSnacks (для рассчта цены)
+            //\\\\ вид чека как для оплаты снек - количество - сумма
+            var content = ((snacks)SnacksGrid.SelectedItem).name + $"   Количество: {CountSnacks.Text} Сумма: "
+                + ( ((snacks)SnacksGrid.SelectedItem).price * Convert.ToInt32(CountSnacks.Text) ).ToString();
             SnacksList.Items.Add(Content);
 
         }
 
         private void DelSnackInList_Click(object sender, RoutedEventArgs e)
         {
-            //\ удвление выбранного элемента из списка
-            // проверка пустого выделения
-            SnacksList.Items.Remove(SnacksList.SelectedItem);
+            //\\\\ удвление выбранного элемента из списка
+            //\\\\ проверка пустого выделения
+            if (SnacksList.SelectedItem != null) SnacksList.Items.Remove(SnacksList.SelectedItem);
+            else MessageBox.Show("Не выбран товар для удаления из списка!");
         }
 
         private void GoToOpalata_Click(object sender, RoutedEventArgs e)
         {
-            //\ дополнить чек оплаты
-            //\ "подсчет" суммы
+            //\\\\ дополнить чек оплаты
+            // "подсчет" суммы
             foreach(var obj in SnacksList.Items)
                 Chek_oplata.Items.Add(obj);
 
@@ -215,10 +220,10 @@ namespace Kursach
 
         private void beznal_btn_Click(object sender, RoutedEventArgs e)
         {
-            //\ активация кнопок печати
+            //\\\\ активация кнопок печати
 
             Nalich_oplata.Text = "0";
-            Sdacha_oplata.Text="0";
+            Sdacha_oplata.Text= "0";
 
             PrintCheck.Visibility = Visibility.Visible;
             PrintTicket.Visibility = Visibility.Visible;
@@ -228,8 +233,22 @@ namespace Kursach
 
         private void nalich_btn_Click(object sender, RoutedEventArgs e)
         {
-            // рассчет разницы чека и(<=) оплаты, вывод сдачи
-            // Если все ок => активация кнопок печати
+            //\\\\ рассчет разницы чека и(<=) оплаты, вывод сдачи
+            //\\\\ Если все ок => активация кнопок печати
+
+            var sdach = Convert.ToInt32(Nalich_oplata.Text) - Convert.ToInt32(finalyPrise.Text);
+            if(sdach < 0)
+            {
+                MessageBox.Show("Недостаточно средств!");
+            }
+            else
+            {
+                Sdacha_oplata.Text = sdach.ToString();
+
+                PrintCheck.Visibility = Visibility.Visible;
+                PrintTicket.Visibility = Visibility.Visible;
+            }
+            
         }
 
         ///\\//\/\/\/\/\/\/
@@ -241,9 +260,17 @@ namespace Kursach
 
         private void PrintTicket_Click(object sender, RoutedEventArgs e)
         {
-            // формирование данных для печати билетов -> название фильма\время начала\номер зала\ряд\место 
+            // формирование данных для печати билетов -> название фильма\время начала\номер зала\ряд\место по количеству билетов
         }
 
-        
+        private void btn_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void btn_Click_1(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }

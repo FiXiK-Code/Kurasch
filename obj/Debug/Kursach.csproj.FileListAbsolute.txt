@@ -62,3 +62,12 @@ D:\Рабочий стол\Kursach\obj\Debug\Kursach.csproj.CoreCompileInputs.ca
 D:\Рабочий стол\Kursach\obj\Debug\Kursach.csproj.CopyComplete
 D:\Рабочий стол\Kursach\obj\Debug\Kursach.exe
 D:\Рабочий стол\Kursach\obj\Debug\Kursach.pdb
+D:\Programm\Projects\Kursach\obj\Debug\LoginWindow.g.cs
+D:\Programm\Projects\Kursach\obj\Debug\Kursach_Content.g.cs
+D:\Programm\Projects\Kursach\bin\Debug\EntityFramework.dll
+D:\Programm\Projects\Kursach\bin\Debug\EntityFramework.SqlServer.dll
+D:\Programm\Projects\Kursach\bin\Debug\EntityFramework.xml
+D:\Programm\Projects\Kursach\bin\Debug\EntityFramework.SqlServer.xml
+D:\Programm\Projects\Kursach\bin\Debug\ru\EntityFramework.resources.dll
+D:\Programm\Projects\Kursach\obj\Debug\LoginWindow.baml
+D:\Programm\Projects\Kursach\obj\Debug\Kursach.csproj.CopyComplete

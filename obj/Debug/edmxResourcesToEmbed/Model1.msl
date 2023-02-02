@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-  <EntityContainerMapping StorageEntityContainer="Хранилище KinoModelContainer" CdmEntityContainer="KinoEntities">
+  <EntityContainerMapping StorageEntityContainer="Хранилище KinoModelContainer" CdmEntityContainer="KinoEntities1">
     <EntitySetMapping Name="admin">
       <EntityTypeMapping TypeName="KinoModel.admin">
         <MappingFragment StoreEntitySet="admin">
@@ -37,7 +37,7 @@
           <ScalarProperty Name="mes" ColumnName="mes" />
           <ScalarProperty Name="countTicket" ColumnName="countTicket" />
           <ScalarProperty Name="sumTicketPrice" ColumnName="sumTicketPrice" />
-          <ScalarProperty Name="sumPodPrice" ColumnName="sumPodPrice" />
+          <ScalarProperty Name="sumProdPrice" ColumnName="sumProdPrice" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
@@ -46,6 +46,8 @@
         <MappingFragment StoreEntitySet="seans">
           <ScalarProperty Name="id" ColumnName="id" />
           <ScalarProperty Name="afish_id" ColumnName="afish_id" />
+          <ScalarProperty Name="zall_id" ColumnName="zall_id" />
+          <ScalarProperty Name="selectPlant" ColumnName="selectPlant" />
           <ScalarProperty Name="time" ColumnName="time" />
           <ScalarProperty Name="price" ColumnName="price" />
         </MappingFragment>
@@ -58,6 +60,15 @@
           <ScalarProperty Name="name" ColumnName="name" />
           <ScalarProperty Name="tara" ColumnName="tara" />
           <ScalarProperty Name="price" ColumnName="price" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="zall">
+      <EntityTypeMapping TypeName="KinoModel.zall">
+        <MappingFragment StoreEntitySet="zall">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="countRyd" ColumnName="countRyd" />
+          <ScalarProperty Name="countPlant" ColumnName="countPlant" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
