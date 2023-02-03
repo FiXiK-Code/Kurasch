@@ -20,5 +20,6 @@ namespace Kursach
         public string selectPlant { get; set; }
         public string time { get; set; }
         public int price { get; set; }
+        public Nullable<int> openPlant { get; set; }
     }
 }

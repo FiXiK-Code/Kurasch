@@ -14,8 +14,10 @@ namespace Kursach
 
         public static bool redact { get; set; }
 
-        public List<string[]> selectPlant {get;set;}
+        public static List<string> selectPlant {get;set;}
+        public static List<string> snacs { get; set; }
 
         public static int SumPrise { get; set; }
+
     }
 }

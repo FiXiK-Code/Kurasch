@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="Хранилище KinoModel" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="Хранилище KinoModel" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <!--Ошибки, обнаруженные при создании:
 предупреждение 6002: В таблице или представлении "Kino.dbo.admin" не определен первичный ключ. Ключ был выведен, а определение таблицы или представления было создано в режиме только для чтения.-->
         <EntityType Name="admin">
@@ -50,16 +50,15 @@
         <EntityType Name="otchot">
           <Key>
             <PropertyRef Name="id" />
-            <PropertyRef Name="mes" />
             <PropertyRef Name="countTicket" />
             <PropertyRef Name="sumTicketPrice" />
             <PropertyRef Name="sumProdPrice" />
           </Key>
           <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="mes" Type="int" Nullable="false" />
           <Property Name="countTicket" Type="int" Nullable="false" />
           <Property Name="sumTicketPrice" Type="int" Nullable="false" />
           <Property Name="sumProdPrice" Type="int" Nullable="false" />
+          <Property Name="date" Type="datetime" />
         </EntityType>
         <!--Ошибки, обнаруженные при создании:
 предупреждение 6002: В таблице или представлении "Kino.dbo.seans" не определен первичный ключ. Ключ был выведен, а определение таблицы или представления было создано в режиме только для чтения.-->
@@ -76,6 +75,7 @@
           <Property Name="selectPlant" Type="varchar" MaxLength="500" />
           <Property Name="time" Type="varchar" MaxLength="13" />
           <Property Name="price" Type="int" Nullable="false" />
+          <Property Name="openPlant" Type="int" />
         </EntityType>
         <!--Ошибки, обнаруженные при создании:
 предупреждение 6002: В таблице или представлении "Kino.dbo.snacks" не определен первичный ключ. Ключ был выведен, а определение таблицы или представления было создано в режиме только для чтения.-->
@@ -130,10 +130,10 @@
           <EntitySet Name="otchot" EntityType="Self.otchot" store:Type="Tables" store:Schema="dbo">
             <DefiningQuery>SELECT 
     [otchot].[id] AS [id], 
-    [otchot].[mes] AS [mes], 
     [otchot].[countTicket] AS [countTicket], 
     [otchot].[sumTicketPrice] AS [sumTicketPrice], 
-    [otchot].[sumProdPrice] AS [sumProdPrice]
+    [otchot].[sumProdPrice] AS [sumProdPrice], 
+    [otchot].[date] AS [date]
     FROM [dbo].[otchot] AS [otchot]</DefiningQuery>
           </EntitySet>
           <EntitySet Name="seans" EntityType="Self.seans" store:Type="Tables" store:Schema="dbo">
@@ -143,7 +143,8 @@
     [seans].[zall_id] AS [zall_id], 
     [seans].[selectPlant] AS [selectPlant], 
     [seans].[time] AS [time], 
-    [seans].[price] AS [price]
+    [seans].[price] AS [price], 
+    [seans].[openPlant] AS [openPlant]
     FROM [dbo].[seans] AS [seans]</DefiningQuery>
           </EntitySet>
           <EntitySet Name="snacks" EntityType="Self.snacks" store:Type="Tables" store:Schema="dbo">
@@ -162,8 +163,7 @@
     FROM [dbo].[zall] AS [zall]</DefiningQuery>
           </EntitySet>
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="KinoModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -204,16 +204,15 @@
         <EntityType Name="otchot">
           <Key>
             <PropertyRef Name="id" />
-            <PropertyRef Name="mes" />
             <PropertyRef Name="countTicket" />
             <PropertyRef Name="sumTicketPrice" />
             <PropertyRef Name="sumProdPrice" />
           </Key>
           <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="mes" Type="Int32" Nullable="false" />
           <Property Name="countTicket" Type="Int32" Nullable="false" />
           <Property Name="sumTicketPrice" Type="Int32" Nullable="false" />
           <Property Name="sumProdPrice" Type="Int32" Nullable="false" />
+          <Property Name="date" Type="DateTime" Precision="3" />
         </EntityType>
         <EntityType Name="seans">
           <Key>
@@ -228,6 +227,7 @@
           <Property Name="selectPlant" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
           <Property Name="time" Type="String" MaxLength="13" FixedLength="false" Unicode="false" />
           <Property Name="price" Type="Int32" Nullable="false" />
+          <Property Name="openPlant" Type="Int32" />
         </EntityType>
         <EntityType Name="snacks">
           <Key>
@@ -298,8 +298,8 @@
           <EntitySetMapping Name="otchot">
             <EntityTypeMapping TypeName="KinoModel.otchot">
               <MappingFragment StoreEntitySet="otchot">
+                <ScalarProperty Name="date" ColumnName="date" />
                 <ScalarProperty Name="id" ColumnName="id" />
-                <ScalarProperty Name="mes" ColumnName="mes" />
                 <ScalarProperty Name="countTicket" ColumnName="countTicket" />
                 <ScalarProperty Name="sumTicketPrice" ColumnName="sumTicketPrice" />
                 <ScalarProperty Name="sumProdPrice" ColumnName="sumProdPrice" />
@@ -309,6 +309,7 @@
           <EntitySetMapping Name="seans">
             <EntityTypeMapping TypeName="KinoModel.seans">
               <MappingFragment StoreEntitySet="seans">
+                <ScalarProperty Name="openPlant" ColumnName="openPlant" />
                 <ScalarProperty Name="id" ColumnName="id" />
                 <ScalarProperty Name="afish_id" ColumnName="afish_id" />
                 <ScalarProperty Name="zall_id" ColumnName="zall_id" />

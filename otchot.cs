@@ -15,9 +15,9 @@ namespace Kursach
     public partial class otchot
     {
         public int id { get; set; }
-        public int mes { get; set; }
         public int countTicket { get; set; }
         public int sumTicketPrice { get; set; }
         public int sumProdPrice { get; set; }
+        public Nullable<System.DateTime> date { get; set; }
     }
 }
