@@ -596,5 +596,17 @@ namespace Kursach
             afish.Visibility = Visibility.Hidden;
             ListAfiah.Visibility = Visibility.Visible;
         }
+
+        private void Window_Loaded(object sender, RoutedEventArgs e)
+        {
+            logined.Visibility = Visibility.Hidden;
+            selector.Visibility = Visibility.Visible;
+            admin.Visibility = Visibility.Hidden;
+            listKassir.Visibility = Visibility.Hidden;
+            kassir.Visibility = Visibility.Hidden;
+            otchot.Visibility = Visibility.Hidden;
+            afish.Visibility = Visibility.Hidden;
+            ListAfiah.Visibility = Visibility.Hidden;
+        }
     }
 }

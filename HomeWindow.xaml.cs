@@ -200,6 +200,16 @@ namespace Kursach
             endSelectionPlent.IsEnabled = true;
         }
 
+        private void Button_Click_1(object sender, RoutedEventArgs e)
+        {
+            //\\\\ обратно в меню
+
+            SelectPlent.Visibility = Visibility.Hidden;
+            Home.Visibility = Visibility.Visible;
+            snacks.Visibility = Visibility.Hidden;
+            oplata.Visibility = Visibility.Hidden;
+        }
+
         private void endSelectionPlent_Click(object sender, RoutedEventArgs e)
         {
             //\\\\ заполнение таблицы со снеками из бд (updateFunction)
@@ -279,6 +289,8 @@ namespace Kursach
         //подумать что делать при перевыборе товаров в чеке
         private void GoToSelPlent_Click(object sender, RoutedEventArgs e)
         {
+            goToMenu.Visibility = Visibility.Hidden;
+
             SelectPlent.Visibility = Visibility.Visible;
             Home.Visibility = Visibility.Hidden;
             snacks.Visibility = Visibility.Hidden;
@@ -379,6 +391,10 @@ namespace Kursach
 
             // составление отчета
 
+            Buff.SumPrise = 0;
+            finalyPrise.Text = "0";
+            Nalich_oplata.Text = "0";
+            SnacksList.Items.Clear();
             poisk_afish.Text = "";
             NameFillm_Home.Text = "Выберите фильм из списка!";
             CB_Time.Items.Clear();
@@ -388,12 +404,37 @@ namespace Kursach
             endSelectionPlent.IsEnabled = false;
             end_Oplata.Visibility = Visibility.Hidden;
 
+            goToMenu.Visibility = Visibility.Visible;
             SelectPlent.Visibility = Visibility.Hidden;
             Home.Visibility = Visibility.Visible;
             snacks.Visibility = Visibility.Hidden;
             oplata.Visibility = Visibility.Hidden;
         }
 
-        
+        private void Window_Loaded(object sender, RoutedEventArgs e)
+        {
+            SelectPlent.Visibility = Visibility.Hidden;
+            Home.Visibility = Visibility.Visible;
+            snacks.Visibility = Visibility.Hidden;
+            oplata.Visibility = Visibility.Hidden;
+        }
+
+        private void Button_Click_2(object sender, RoutedEventArgs e)
+        {
+            SelectPlent.Visibility = Visibility.Hidden;
+            Home.Visibility = Visibility.Visible;
+            snacks.Visibility = Visibility.Hidden;
+            oplata.Visibility = Visibility.Hidden;
+        }
+
+        private void goToMenu_Click(object sender, RoutedEventArgs e)
+        {
+            SelectPlent.Visibility = Visibility.Hidden;
+            Home.Visibility = Visibility.Visible;
+            snacks.Visibility = Visibility.Hidden;
+            oplata.Visibility = Visibility.Hidden;
+        }
+
+      
     }
 }

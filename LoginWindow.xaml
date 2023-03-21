@@ -5,9 +5,9 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Kursach"
         mc:Ignorable="d"
-        Title="Авторизация" Height="426.316" Width="409.907">
+        Title="Авторизация" Height="426.316" Width="409.907" Loaded="Window_Loaded">
     <Grid>
-        <Grid x:Name="logined" Visibility="Hidden" HorizontalAlignment="Left" Height="397" VerticalAlignment="Top" Width="403" Margin="0,0,0,-0.2" d:IsHidden="True">
+        <Grid x:Name="logined" Visibility="Visible" HorizontalAlignment="Left" Height="397" VerticalAlignment="Top" Width="403" Margin="0,0,0,-0.2" d:IsHidden="True">
             <TextBox x:Name="LoginTextBox" HorizontalAlignment="Left" Height="32" Margin="62,114,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="279" FontSize="20" TextAlignment="Center"/>
             <TextBox x:Name="PasswordTextBox" HorizontalAlignment="Left" Height="32" Margin="62,203,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="279" FontSize="20" TextAlignment="Center"/>
             <Button x:Name="login" Content="Войти" HorizontalAlignment="Left" Margin="124,277,0,0" VerticalAlignment="Top" Width="182" Height="40" Click="login_Click" FontSize="20"/>
@@ -23,20 +23,20 @@
             <Button x:Name="kassirBtn" Content="Открыть смену" HorizontalAlignment="Left" Margin="52,130,0,0" VerticalAlignment="Top" Width="270" Height="61" FontSize="20" Click="kassirBtn_Click" Grid.Column="1"/>
             <Button x:Name="adminBtn" Content="Администратор" HorizontalAlignment="Left" Margin="52,215,0,0" VerticalAlignment="Top" Width="270" Height="61" FontSize="20" Click="adminBtn_Click" Grid.Column="1"/>
         </Grid>
-        <Grid x:Name="admin" Visibility="Hidden" HorizontalAlignment="Left" Height="397" VerticalAlignment="Top" Width="403" Margin="0,0,0,-0.2" d:IsHidden="True">
+        <Grid x:Name="admin" Visibility="Visible" HorizontalAlignment="Left" Height="397" VerticalAlignment="Top" Width="403" Margin="0,0,0,-0.2" d:IsHidden="True">
             <Button x:Name="adminKassiri" Content="Кассиры" HorizontalAlignment="Left" Margin="71,95,0,0" VerticalAlignment="Top" Width="270" Height="61" FontSize="20" Click="adminKassiri_Click"/>
             <Button x:Name="adminOtchot" Content="Отчет" HorizontalAlignment="Left" Margin="71,163,0,0" VerticalAlignment="Top" Width="270" Height="61" FontSize="20" Click="adminOtchot_Click"/>
             <Button x:Name="adminExit" Content="Выход" HorizontalAlignment="Left" Margin="71,299,0,0" VerticalAlignment="Top" Width="270" Height="61" FontSize="20" Click="adminExit_Click"/>
             <Button x:Name="afiahRed" Content="Афиша" HorizontalAlignment="Left" Margin="71,229,0,0" VerticalAlignment="Top" Width="270" Height="61" FontSize="20" Click="afiahRed_Click"/>
         </Grid>
-        <Grid x:Name="listKassir" Visibility="Hidden" HorizontalAlignment="Left" Height="397" VerticalAlignment="Top" Width="403" Margin="0,0,0,-0.2" d:IsHidden="True">
+        <Grid x:Name="listKassir" Visibility="Visible" HorizontalAlignment="Left" Height="397" VerticalAlignment="Top" Width="403" Margin="0,0,0,-0.2" d:IsHidden="True">
             <Button x:Name="listKassirBack" Content="Назад" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Width="75" FontSize="20" Click="listKassirBack_Click"/>
             <Button x:Name="lisatKassirAdd" Content="Добавить" HorizontalAlignment="Left" Margin="110,351,0,0" VerticalAlignment="Top" Width="184" Height="32" FontSize="20" Click="lisatKassirAdd_Click"/>
             <Button x:Name="listKassirRedact" Content="Редактировать" HorizontalAlignment="Left" Margin="10,314,0,0" VerticalAlignment="Top" Width="184" Height="32" FontSize="20" Click="listKassirRedact_Click"/>
             <Button x:Name="listKassirDelete" Content="Удалить" HorizontalAlignment="Left" Margin="209,314,0,0" VerticalAlignment="Top" Width="184" Height="32" FontSize="20" Click="listKassirDelete_Click"/>
             <DataGrid x:Name="DGKassir" HorizontalAlignment="Left" Height="249" Margin="26,60,0,0" VerticalAlignment="Top" Width="353"/>
         </Grid>
-        <Grid x:Name="kassir" Visibility="Hidden" HorizontalAlignment="Left" Height="397" VerticalAlignment="Top" Width="403" Margin="0,0,0,-0.2" d:IsHidden="True">
+        <Grid x:Name="kassir" Visibility="Visible" HorizontalAlignment="Left" Height="397" VerticalAlignment="Top" Width="403" Margin="0,0,0,-0.2" d:IsHidden="True">
             <TextBox x:Name="Kassir_fio" HorizontalAlignment="Left" Height="58" Margin="99,71,0,0" TextWrapping="Wrap" Text="Иванов Иван Иванович" VerticalContentAlignment="Center" VerticalAlignment="Top" Width="294" FontSize="20" TextAlignment="Center"/>
             <TextBlock HorizontalAlignment="Left" Margin="10,87,0,0" TextWrapping="Wrap" Text="ФИО:" VerticalAlignment="Top" Height="29" Width="84" FontSize="20" />
             <TextBox x:Name="Kassir_login" HorizontalAlignment="Left" Height="58" Margin="99,137,0,0" TextWrapping="Wrap" Text="логин" VerticalContentAlignment="Center" VerticalAlignment="Top" Width="294" FontSize="20" TextAlignment="Center"/>
@@ -46,7 +46,7 @@
             <Button x:Name="Kassir_saveButton" Content="Сохранить" HorizontalAlignment="Left" Margin="99,304,0,0" VerticalAlignment="Top" Width="192" Height="43" FontSize="20" Click="Kassir_saveButton_Click"/>
             <Button Content="Отмена" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Width="108" Height="37" FontSize="20" Click="Button_Click"/>
         </Grid>
-        <Grid x:Name="otchot" Visibility="Hidden" HorizontalAlignment="Left" Height="397" VerticalAlignment="Top" Width="403" Margin="0,0,0,-0.2" d:IsHidden="True">
+        <Grid x:Name="otchot" Visibility="Visible" HorizontalAlignment="Left" Height="397" VerticalAlignment="Top" Width="403" Margin="0,0,0,-0.2" d:IsHidden="True">
             <Button x:Name="otchotBack" Content="Назад" HorizontalAlignment="Left" Margin="10,8,0,0" VerticalAlignment="Top" Width="86" Height="32" FontSize="20" Click="otchotBack_Click"/>
             <TextBlock HorizontalAlignment="Left" Margin="70,61,0,0" TextWrapping="Wrap" VerticalAlignment="Top" FontSize="20"><Run Text="Месяц"/><Run Text=":"/></TextBlock>
             <DataGrid x:Name="DGOthot" HorizontalAlignment="Left" Height="127" Margin="10,161,0,0" VerticalAlignment="Top" Width="383"/>
@@ -72,14 +72,14 @@
                 <TextBlock Text="Декабрь"/>
             </ComboBox>
         </Grid>
-        <Grid x:Name="ListAfiah" Visibility="Visible">
+        <Grid x:Name="ListAfiah" Visibility="Visible" d:IsHidden="True">
             <Button x:Name="AfishaBack" Content="Назад" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Width="75" FontSize="20" Click="AfishaBack_Click"/>
             <ListBox x:Name="ListBox_Afisha" HorizontalAlignment="Left" Height="264" Margin="10,45,0,0" VerticalAlignment="Top" Width="383" FontSize="20"/>
             <Button x:Name="AfishaAdd" Content="Добавить" HorizontalAlignment="Left" Margin="110,351,0,0" VerticalAlignment="Top" Width="184" Height="32" FontSize="20" Click="AfishaAdd_Click"/>
             <Button x:Name="AfishaRedact" Content="Редактировать" HorizontalAlignment="Left" Margin="10,314,0,0" VerticalAlignment="Top" Width="184" Height="32" FontSize="20" Click="AfishaRedact_Click"/>
             <Button x:Name="AfishaDelete" Content="Удалить" HorizontalAlignment="Left" Margin="209,314,0,0" VerticalAlignment="Top" Width="184" Height="32" FontSize="20" Click="AfishaDelete_Click"/>
         </Grid>
-        <Grid x:Name="afish" Visibility="Hidden" HorizontalAlignment="Left" Height="397" VerticalAlignment="Top" Width="403" d:IsHidden="True">
+        <Grid x:Name="afish" Visibility="Visible" HorizontalAlignment="Left" Height="397" VerticalAlignment="Top" Width="403" d:IsHidden="True">
             <TextBox x:Name="nameFilm_Afish" HorizontalAlignment="Left" Height="32" Margin="123,53,0,0" TextWrapping="Wrap" Text="text" VerticalContentAlignment="Center" VerticalAlignment="Top" Width="270" FontSize="20" TextAlignment="Center"/>
             <TextBlock HorizontalAlignment="Left" Margin="15,56,0,0" TextWrapping="Wrap" Text="Название:" VerticalAlignment="Top" Height="29" Width="103" FontSize="20" />
             <TextBox x:Name="numZll_Afish" HorizontalAlignment="Left" Height="32" Margin="104,99,0,0" TextWrapping="Wrap" Text="10" VerticalContentAlignment="Center" VerticalAlignment="Top" Width="34" FontSize="20" TextAlignment="Center"/>
