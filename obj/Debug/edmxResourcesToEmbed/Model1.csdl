@@ -3,9 +3,6 @@
   <EntityType Name="admin">
     <Key>
       <PropertyRef Name="id" />
-      <PropertyRef Name="name" />
-      <PropertyRef Name="login" />
-      <PropertyRef Name="password" />
     </Key>
     <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
     <Property Name="name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
@@ -15,19 +12,14 @@
   <EntityType Name="afish">
     <Key>
       <PropertyRef Name="id" />
-      <PropertyRef Name="name" />
-      <PropertyRef Name="length" />
     </Key>
     <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-    <Property Name="name" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
     <Property Name="length" Type="Time" Nullable="false" Precision="7" />
   </EntityType>
   <EntityType Name="kassir">
     <Key>
       <PropertyRef Name="id" />
-      <PropertyRef Name="name" />
-      <PropertyRef Name="login" />
-      <PropertyRef Name="password" />
     </Key>
     <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
     <Property Name="name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
@@ -37,37 +29,28 @@
   <EntityType Name="otchot">
     <Key>
       <PropertyRef Name="id" />
-      <PropertyRef Name="mes" />
-      <PropertyRef Name="countTicket" />
-      <PropertyRef Name="sumTicketPrice" />
-      <PropertyRef Name="sumProdPrice" />
     </Key>
     <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-    <Property Name="mes" Type="Int32" Nullable="false" />
     <Property Name="countTicket" Type="Int32" Nullable="false" />
     <Property Name="sumTicketPrice" Type="Int32" Nullable="false" />
     <Property Name="sumProdPrice" Type="Int32" Nullable="false" />
+    <Property Name="date" Type="DateTime" Nullable="false" Precision="3" />
   </EntityType>
   <EntityType Name="seans">
     <Key>
       <PropertyRef Name="id" />
-      <PropertyRef Name="afish_id" />
-      <PropertyRef Name="zall_id" />
-      <PropertyRef Name="price" />
     </Key>
     <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
     <Property Name="afish_id" Type="Int32" Nullable="false" />
     <Property Name="zall_id" Type="Int32" Nullable="false" />
-    <Property Name="selectPlant" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
-    <Property Name="time" Type="String" MaxLength="13" FixedLength="false" Unicode="false" />
+    <Property Name="selectPlant" Type="String" MaxLength="500" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="time" Type="String" MaxLength="13" FixedLength="false" Unicode="false" Nullable="false" />
     <Property Name="price" Type="Int32" Nullable="false" />
+    <Property Name="openPlant" Type="Int32" Nullable="false" />
   </EntityType>
   <EntityType Name="snacks">
     <Key>
       <PropertyRef Name="id" />
-      <PropertyRef Name="name" />
-      <PropertyRef Name="tara" />
-      <PropertyRef Name="price" />
     </Key>
     <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
     <Property Name="name" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
@@ -77,14 +60,12 @@
   <EntityType Name="zall">
     <Key>
       <PropertyRef Name="id" />
-      <PropertyRef Name="countRyd" />
-      <PropertyRef Name="countPlant" />
     </Key>
     <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
     <Property Name="countRyd" Type="Int32" Nullable="false" />
     <Property Name="countPlant" Type="Int32" Nullable="false" />
   </EntityType>
-  <EntityContainer Name="KinoEntities1" annotation:LazyLoadingEnabled="true">
+  <EntityContainer Name="KinoEntities2" annotation:LazyLoadingEnabled="true">
     <EntitySet Name="admin" EntityType="Self.admin" />
     <EntitySet Name="afish" EntityType="Self.afish" />
     <EntitySet Name="kassir" EntityType="Self.kassir" />

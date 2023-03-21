@@ -18,6 +18,6 @@ namespace Kursach
         public int countTicket { get; set; }
         public int sumTicketPrice { get; set; }
         public int sumProdPrice { get; set; }
-        public Nullable<System.DateTime> date { get; set; }
+        public System.DateTime date { get; set; }
     }
 }

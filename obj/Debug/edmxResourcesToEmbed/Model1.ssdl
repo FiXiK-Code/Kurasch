@@ -1,160 +1,77 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Schema Namespace="Хранилище KinoModel" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
-  <!--Ошибки, обнаруженные при создании:
-предупреждение 6002: В таблице или представлении "Kino.dbo.admin" не определен первичный ключ. Ключ был выведен, а определение таблицы или представления было создано в режиме только для чтения.-->
   <EntityType Name="admin">
     <Key>
       <PropertyRef Name="id" />
-      <PropertyRef Name="name" />
-      <PropertyRef Name="login" />
-      <PropertyRef Name="password" />
     </Key>
     <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="name" Type="varchar" MaxLength="50" Nullable="false" />
     <Property Name="login" Type="varchar" MaxLength="10" Nullable="false" />
     <Property Name="password" Type="varchar" MaxLength="6" Nullable="false" />
   </EntityType>
-  <!--Ошибки, обнаруженные при создании:
-предупреждение 6002: В таблице или представлении "Kino.dbo.afish" не определен первичный ключ. Ключ был выведен, а определение таблицы или представления было создано в режиме только для чтения.-->
   <EntityType Name="afish">
     <Key>
       <PropertyRef Name="id" />
-      <PropertyRef Name="name" />
-      <PropertyRef Name="length" />
     </Key>
     <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="name" Type="varchar" MaxLength="100" Nullable="false" />
+    <Property Name="name" Type="varchar" MaxLength="50" Nullable="false" />
     <Property Name="length" Type="time" Precision="7" Nullable="false" />
   </EntityType>
-  <!--Ошибки, обнаруженные при создании:
-предупреждение 6002: В таблице или представлении "Kino.dbo.kassir" не определен первичный ключ. Ключ был выведен, а определение таблицы или представления было создано в режиме только для чтения.-->
   <EntityType Name="kassir">
     <Key>
       <PropertyRef Name="id" />
-      <PropertyRef Name="name" />
-      <PropertyRef Name="login" />
-      <PropertyRef Name="password" />
     </Key>
     <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="name" Type="varchar" MaxLength="50" Nullable="false" />
     <Property Name="login" Type="varchar" MaxLength="10" Nullable="false" />
     <Property Name="password" Type="varchar" MaxLength="6" Nullable="false" />
   </EntityType>
-  <!--Ошибки, обнаруженные при создании:
-предупреждение 6002: В таблице или представлении "Kino.dbo.otchot" не определен первичный ключ. Ключ был выведен, а определение таблицы или представления было создано в режиме только для чтения.-->
   <EntityType Name="otchot">
     <Key>
       <PropertyRef Name="id" />
-      <PropertyRef Name="mes" />
-      <PropertyRef Name="countTicket" />
-      <PropertyRef Name="sumTicketPrice" />
-      <PropertyRef Name="sumProdPrice" />
     </Key>
     <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="mes" Type="int" Nullable="false" />
     <Property Name="countTicket" Type="int" Nullable="false" />
     <Property Name="sumTicketPrice" Type="int" Nullable="false" />
     <Property Name="sumProdPrice" Type="int" Nullable="false" />
+    <Property Name="date" Type="datetime" Nullable="false" />
   </EntityType>
-  <!--Ошибки, обнаруженные при создании:
-предупреждение 6002: В таблице или представлении "Kino.dbo.seans" не определен первичный ключ. Ключ был выведен, а определение таблицы или представления было создано в режиме только для чтения.-->
   <EntityType Name="seans">
     <Key>
       <PropertyRef Name="id" />
-      <PropertyRef Name="afish_id" />
-      <PropertyRef Name="zall_id" />
-      <PropertyRef Name="price" />
     </Key>
     <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="afish_id" Type="int" Nullable="false" />
     <Property Name="zall_id" Type="int" Nullable="false" />
-    <Property Name="selectPlant" Type="varchar" MaxLength="500" />
-    <Property Name="time" Type="varchar" MaxLength="13" />
+    <Property Name="selectPlant" Type="varchar" MaxLength="500" Nullable="false" />
+    <Property Name="time" Type="varchar" MaxLength="13" Nullable="false" />
     <Property Name="price" Type="int" Nullable="false" />
+    <Property Name="openPlant" Type="int" Nullable="false" />
   </EntityType>
-  <!--Ошибки, обнаруженные при создании:
-предупреждение 6002: В таблице или представлении "Kino.dbo.snacks" не определен первичный ключ. Ключ был выведен, а определение таблицы или представления было создано в режиме только для чтения.-->
   <EntityType Name="snacks">
     <Key>
       <PropertyRef Name="id" />
-      <PropertyRef Name="name" />
-      <PropertyRef Name="tara" />
-      <PropertyRef Name="price" />
     </Key>
     <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="name" Type="varchar" MaxLength="20" Nullable="false" />
     <Property Name="tara" Type="varchar" MaxLength="5" Nullable="false" />
     <Property Name="price" Type="int" Nullable="false" />
   </EntityType>
-  <!--Ошибки, обнаруженные при создании:
-предупреждение 6002: В таблице или представлении "Kino.dbo.zall" не определен первичный ключ. Ключ был выведен, а определение таблицы или представления было создано в режиме только для чтения.-->
   <EntityType Name="zall">
     <Key>
       <PropertyRef Name="id" />
-      <PropertyRef Name="countRyd" />
-      <PropertyRef Name="countPlant" />
     </Key>
     <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="countRyd" Type="int" Nullable="false" />
     <Property Name="countPlant" Type="int" Nullable="false" />
   </EntityType>
   <EntityContainer Name="Хранилище KinoModelContainer">
-    <EntitySet Name="admin" EntityType="Self.admin" store:Type="Tables" store:Schema="dbo">
-      <DefiningQuery>SELECT 
-    [admin].[id] AS [id], 
-    [admin].[name] AS [name], 
-    [admin].[login] AS [login], 
-    [admin].[password] AS [password]
-    FROM [dbo].[admin] AS [admin]</DefiningQuery>
-    </EntitySet>
-    <EntitySet Name="afish" EntityType="Self.afish" store:Type="Tables" store:Schema="dbo">
-      <DefiningQuery>SELECT 
-    [afish].[id] AS [id], 
-    [afish].[name] AS [name], 
-    [afish].[length] AS [length]
-    FROM [dbo].[afish] AS [afish]</DefiningQuery>
-    </EntitySet>
-    <EntitySet Name="kassir" EntityType="Self.kassir" store:Type="Tables" store:Schema="dbo">
-      <DefiningQuery>SELECT 
-    [kassir].[id] AS [id], 
-    [kassir].[name] AS [name], 
-    [kassir].[login] AS [login], 
-    [kassir].[password] AS [password]
-    FROM [dbo].[kassir] AS [kassir]</DefiningQuery>
-    </EntitySet>
-    <EntitySet Name="otchot" EntityType="Self.otchot" store:Type="Tables" store:Schema="dbo">
-      <DefiningQuery>SELECT 
-    [otchot].[id] AS [id], 
-    [otchot].[mes] AS [mes], 
-    [otchot].[countTicket] AS [countTicket], 
-    [otchot].[sumTicketPrice] AS [sumTicketPrice], 
-    [otchot].[sumProdPrice] AS [sumProdPrice]
-    FROM [dbo].[otchot] AS [otchot]</DefiningQuery>
-    </EntitySet>
-    <EntitySet Name="seans" EntityType="Self.seans" store:Type="Tables" store:Schema="dbo">
-      <DefiningQuery>SELECT 
-    [seans].[id] AS [id], 
-    [seans].[afish_id] AS [afish_id], 
-    [seans].[zall_id] AS [zall_id], 
-    [seans].[selectPlant] AS [selectPlant], 
-    [seans].[time] AS [time], 
-    [seans].[price] AS [price]
-    FROM [dbo].[seans] AS [seans]</DefiningQuery>
-    </EntitySet>
-    <EntitySet Name="snacks" EntityType="Self.snacks" store:Type="Tables" store:Schema="dbo">
-      <DefiningQuery>SELECT 
-    [snacks].[id] AS [id], 
-    [snacks].[name] AS [name], 
-    [snacks].[tara] AS [tara], 
-    [snacks].[price] AS [price]
-    FROM [dbo].[snacks] AS [snacks]</DefiningQuery>
-    </EntitySet>
-    <EntitySet Name="zall" EntityType="Self.zall" store:Type="Tables" store:Schema="dbo">
-      <DefiningQuery>SELECT 
-    [zall].[id] AS [id], 
-    [zall].[countRyd] AS [countRyd], 
-    [zall].[countPlant] AS [countPlant]
-    FROM [dbo].[zall] AS [zall]</DefiningQuery>
-    </EntitySet>
+    <EntitySet Name="admin" EntityType="Self.admin" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="afish" EntityType="Self.afish" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="kassir" EntityType="Self.kassir" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="otchot" EntityType="Self.otchot" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="seans" EntityType="Self.seans" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="snacks" EntityType="Self.snacks" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="zall" EntityType="Self.zall" Schema="dbo" store:Type="Tables" />
   </EntityContainer>
 </Schema>

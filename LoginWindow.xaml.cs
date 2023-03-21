@@ -28,15 +28,38 @@ namespace Kursach
         private bool TryLogin(string login, string paswd, bool admin)
         {
             if (admin)
-            {//add try catch
-                if(App.db.admin.FirstOrDefault(p => p.login == login)
-                    .password == paswd) return true;
+            {//\\\\add try catch
+                try
+                {
+                    if (App.db.admin.FirstOrDefault(p => p.login == login).password == paswd) return true;
+                }
+                catch (Exception)
+                {
+                    return false;
+                }
+                
             }else
             {
-                if (App.db.kassir.FirstOrDefault(p => p.login == login)
+                try
+                {
+                    if (App.db.kassir.FirstOrDefault(p => p.login == login)
                     .password == paswd) return true;
+                }
+                catch (Exception)
+                {
+                    return false;
+                }
             }
             return false;
+        }
+
+        public void UpdateAfishList()
+        {
+            ListBox_Afisha.Items.Clear();
+            foreach(var film in App.db.afish.OrderBy(p => p.name))
+            {
+                ListBox_Afisha.Items.Add(film.name);
+            }
         }
 
 
@@ -117,7 +140,7 @@ namespace Kursach
         {
             //\\\\ заполнить список кассиров
 
-            DGKassir.ItemsSource = App.db.kassir;
+            DGKassir.ItemsSource = App.db.kassir.OrderBy(p => p.name).ToList();
 
             logined.Visibility = Visibility.Hidden;
             selector.Visibility = Visibility.Hidden;
@@ -133,7 +156,7 @@ namespace Kursach
         {
             //\\\ заполнить список отчетов
 
-            DGOthot.ItemsSource = App.db.otchot;
+            DGOthot.ItemsSource = App.db.otchot.ToList();
 
 
             logined.Visibility = Visibility.Hidden;
@@ -152,12 +175,8 @@ namespace Kursach
             //\\\\ заполнить список афиши
             foreach(var elem in App.db.afish.OrderBy(p => p.name))
             {
-                TextBlock item = new TextBlock()
-                {
-                    Text = elem.name,
-                    FontSize = 20
-                };
-                ListBox_Afisha.Items.Add(item);
+                
+                ListBox_Afisha.Items.Add(elem.name);
             }
             
 
@@ -189,7 +208,6 @@ namespace Kursach
 
         private void listKassirBack_Click(object sender, RoutedEventArgs e)
         {
-            // MB "Точно?"
 
             logined.Visibility = Visibility.Hidden;
             selector.Visibility = Visibility.Hidden;
@@ -226,12 +244,14 @@ namespace Kursach
         private void listKassirDelete_Click(object sender, RoutedEventArgs e)
         {
             //\\\\\\\\\проверить функционал
-
+            // "точно удалять?"
             var delKassir = (kassir)DGKassir.SelectedItem;
             App.db.kassir.Remove(delKassir);
             App.db.SaveChanges();
 
-            DGKassir.ItemsSource = App.db.kassir;
+            DGKassir.ItemsSource = App.db.kassir.ToList();
+
+            MessageBox.Show($"{delKassir.name} - Удален из базы сотрудников!");
         }
 
         private void lisatKassirAdd_Click(object sender, RoutedEventArgs e)
@@ -285,7 +305,7 @@ namespace Kursach
             }
             else
             {
-                kassir item = new kassir()
+                kassir item = new kassir
                 {name = Kassir_fio.Text,
                 login = Kassir_login.Text,
                 password = Kassir_paswd.Text
@@ -296,7 +316,7 @@ namespace Kursach
 
             //\\\\\\ выходить на предыдущую страницу и обновлять данные в списке
 
-            DGKassir.ItemsSource = App.db.kassir;
+            DGKassir.ItemsSource = App.db.kassir.ToList();
 
             logined.Visibility = Visibility.Hidden;
             selector.Visibility = Visibility.Hidden;
@@ -313,8 +333,6 @@ namespace Kursach
 
         private void otchotBack_Click(object sender, RoutedEventArgs e)
         {
-            // MB "Точно?"
-
             logined.Visibility = Visibility.Hidden;
             selector.Visibility = Visibility.Hidden;
             admin.Visibility = Visibility.Visible;
@@ -330,16 +348,31 @@ namespace Kursach
         {
             //\\\\ обновлять список по выбранному месяцу
 
-            var otchot = App.db.otchot.Where(p => p.mes == MonthCB.SelectedIndex + 1);
+            try
+            {
+                var otchot = App.db.otchot.Where(p => p.date.Year == new DateTime(YearCB.SelectedIndex + 2022, MonthCB.SelectedIndex + 1, 1).Year
+                    && p.date.Month == new DateTime(YearCB.SelectedIndex + 2022, MonthCB.SelectedIndex + 1, 1).Month);// проверить что индекс с нуля
+                DGOthot.ItemsSource = otchot;
+            }
+            catch(Exception)
+            {
 
-            DGOthot.ItemsSource = otchot;
+            }
         }
 
         private void YearCB_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            //var otchot = ((List<otchot>)DGOthot.ItemsSource).Where(p => p.year == YearCB.SelectedIndex + 1);
+            try
+            {
+                var otchot = App.db.otchot.Where(p => p.date.Year == new DateTime(YearCB.SelectedIndex + 2022, MonthCB.SelectedIndex + 1, 1).Year
+                    && p.date.Month == new DateTime(YearCB.SelectedIndex + 2022, MonthCB.SelectedIndex + 1, 1).Month);// проверить что индекс с нуля
 
-            //DGOthot.ItemsSource = otchot;
+                DGOthot.ItemsSource = otchot;
+            }
+            catch (Exception)
+            {
+
+            }
         }
 
 
@@ -363,8 +396,59 @@ namespace Kursach
         private void AfishaRedact_Click(object sender, RoutedEventArgs e)
         {
             //\\\\ показать форму заполнения
-            // передать данные по выбранному элементу
-            // передавть идентификатор элемента
+            //\\\\ делать выборку по имени и заполнять поля ввода
+            //\\\\ передавать данные в поля
+
+            var afishFilm = App.db.afish.FirstOrDefault(p => p.name == (ListBox_Afisha.SelectedItem).ToString());
+            CBSeans_Afish.Items.Clear();
+            nameFilm_Afish.Text = afishFilm.name;
+            length_Afish.Text = afishFilm.length.ToString();
+            newSeans_Afish.Text = "00:00 - 00:00";
+
+            List<seans> seansi = new List<seans>();
+            try
+            {
+                seansi = App.db.seans.Where(p => p.afish_id == afishFilm.id).ToList();
+                foreach (var time in seansi.OrderBy(p => p.time))
+                {
+                    CBSeans_Afish.Items.Add(time.time);
+                }
+                numZll_Afish.Text = seansi[0].zall_id.ToString();
+                prise_Afish.Text = seansi[0].price.ToString();
+            }
+            catch (Exception)
+            {
+                CBSeans_Afish.Items.Clear();
+                numZll_Afish.Text = "";
+                prise_Afish.Text = "";
+            }
+           
+            
+            Buff.redact = true;
+
+            logined.Visibility = Visibility.Hidden;
+            selector.Visibility = Visibility.Hidden;
+            admin.Visibility = Visibility.Hidden;
+            listKassir.Visibility = Visibility.Hidden;
+            kassir.Visibility = Visibility.Hidden;
+            otchot.Visibility = Visibility.Hidden;
+            afish.Visibility = Visibility.Visible;
+            ListAfiah.Visibility = Visibility.Hidden;
+        }
+
+        private void AfishaAdd_Click(object sender, RoutedEventArgs e)
+        {
+            //\\\\ очистить поля
+            //\\\\ показать форму заполнения
+
+            nameFilm_Afish.Text = "";
+            numZll_Afish.Text = "";
+            prise_Afish.Text = "";
+            length_Afish.Text = "";
+            newSeans_Afish.Text = "00:00 - 00:00";
+            CBSeans_Afish.Items.Clear();
+
+            Buff.redact = false;
 
             logined.Visibility = Visibility.Hidden;
             selector.Visibility = Visibility.Hidden;
@@ -381,35 +465,17 @@ namespace Kursach
             // MB "Точно удалть?"
             //\\\\ удалить из бд
 
+            
+            var elem = App.db.afish.FirstOrDefault(p => p.name == ListBox_Afisha.SelectedItem.ToString());
             ListBox_Afisha.Items.Remove(ListBox_Afisha.SelectedItem);
-
-            var elem = App.db.afish.FirstOrDefault(p => p.name == ((TextBlock)ListBox_Afisha.SelectedItem).Text.ToString());
             App.db.afish.Remove(elem);
+            App.db.SaveChanges();
         }
-
-        private void AfishaAdd_Click(object sender, RoutedEventArgs e)
-        {
-            // очистить поля
-            //\\\\ показать форму заполнения
-
-
-            logined.Visibility = Visibility.Hidden;
-            selector.Visibility = Visibility.Hidden;
-            admin.Visibility = Visibility.Hidden;
-            listKassir.Visibility = Visibility.Hidden;
-            kassir.Visibility = Visibility.Hidden;
-            otchot.Visibility = Visibility.Hidden;
-            afish.Visibility = Visibility.Visible;
-            ListAfiah.Visibility = Visibility.Hidden;
-        }
-
 
         //########## afish
 
         private void agish_back_Click(object sender, RoutedEventArgs e)
         {
-            // MB "Точно?"
-
             logined.Visibility = Visibility.Hidden;
             selector.Visibility = Visibility.Hidden;
             admin.Visibility = Visibility.Visible;
@@ -420,21 +486,104 @@ namespace Kursach
             ListAfiah.Visibility = Visibility.Hidden;
         }
 
-        private void afish_Save_Click(object sender, RoutedEventArgs e)
+        private void delSeans_btn_Click(object sender, RoutedEventArgs e)
         {
-            //\\\ сделать ветвление для редактирования и создания
-            //\\\\ выходить на предыдущую страницу
-            // обновлять данные в списке по завершении
-
-            // при редактировании искать объект по индентификатору
-            if (Buff.redact)
+            if (CBSeans_Afish.SelectedIndex == -1)
             {
-                
+                MessageBox.Show("Для удаления необходимо выбрать элемент!");
             }
-            // при создании создавть объект и сохранять в базе
             else
             {
+                CBSeans_Afish.Items.Remove(CBSeans_Afish.SelectedItem);
+            }
+        }
+
+        private void addSeans_btn_Click(object sender, RoutedEventArgs e)
+        {
+
+            if (true) //валидация ввода сеанса
+            {
+                CBSeans_Afish.Items.Add(newSeans_Afish.Text);
+            }
+            else
+            {
+                MessageBox.Show("Проверьте данные ввода!\nФормат времени сеанса: <00:00 - 00:00>");
+            } 
+        }
+
+        private void afish_Save_Click(object sender, RoutedEventArgs e)
+        {
+            //\\\\ сделать ветвление для редактирования и создания
+            //\\\\ выходить на предыдущую страницу
+            //\\\\ обновлять данные в списке по завершении
+
+            //\\\\ при редактировании искать объект по индентификатору
+            if (Buff.redact)
+            {
+                var film = App.db.afish.FirstOrDefault(p => p.name == (ListBox_Afisha.SelectedItem).ToString());
+                film.name = nameFilm_Afish.Text;
+                film.length = new TimeSpan(Convert.ToInt32(length_Afish.Text.Split(':')[0]), Convert.ToInt32(length_Afish.Text.Split(':')[1]), 0);
+                App.db.SaveChanges();
+
+                var seansi = App.db.seans.Where(p => p.afish_id == film.id);
+                foreach(var del in seansi)
+                {
+                    App.db.seans.Remove(del);
+                    
+                }
+                App.db.SaveChanges();
+
+                int numZal = Convert.ToInt32(numZll_Afish.Text.ToString());
+                var zall = App.db.zall.FirstOrDefault(p => p.id == numZal);
+                int openPlant = zall.countRyd * zall.countPlant;
+                foreach (var time in CBSeans_Afish.Items)
+                {
+                    var newSeans = new seans{
+                        afish_id = film.id,
+                        zall_id = Convert.ToInt32(numZll_Afish.Text),
+                        selectPlant = "",
+                        time = time.ToString(),
+                        price = Convert.ToInt32(prise_Afish.Text),
+                        openPlant = openPlant
+                    };
+                    App.db.seans.Add(newSeans);
+                    App.db.SaveChanges();
+                }
                 
+                UpdateAfishList();
+                CBSeans_Afish.Items.Clear();
+            }
+            //\\\\ при создании создавть объект и сохранять в базе
+            else
+            {
+                var newFilm = new afish()
+                {
+                    name = nameFilm_Afish.Text,
+                    length = new TimeSpan(Convert.ToInt32(length_Afish.Text.Split(':')[0]), Convert.ToInt32(length_Afish.Text.Split(':')[1]), 0)
+                };
+                App.db.afish.Add(newFilm);
+                App.db.SaveChanges();
+                var numZal = Convert.ToInt32(numZll_Afish.Text.ToString());
+                var zall = App.db.zall.FirstOrDefault(p => p.id == numZal);
+                int openPlant = zall.countRyd * zall.countPlant;
+                foreach (var time in CBSeans_Afish.Items)
+                {
+                    seans newSeans = new seans()
+                    {
+                        afish_id = App.db.afish.FirstOrDefault(p => p.name == newFilm.name).id,
+                        zall_id = Convert.ToInt32(numZll_Afish.Text),
+                        selectPlant = "",
+                        time = time.ToString(),
+                        price = Convert.ToInt32(prise_Afish.Text),
+                        openPlant= openPlant
+                    };
+                    App.db.seans.Add(newSeans);
+                   
+                }
+                App.db.SaveChanges();
+                UpdateAfishList();
+
+                CBSeans_Afish.Items.Clear();
             }
 
 
@@ -447,7 +596,5 @@ namespace Kursach
             afish.Visibility = Visibility.Hidden;
             ListAfiah.Visibility = Visibility.Visible;
         }
-
-        
     }
 }

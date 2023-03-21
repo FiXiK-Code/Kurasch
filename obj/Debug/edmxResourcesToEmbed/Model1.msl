@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-  <EntityContainerMapping StorageEntityContainer="Хранилище KinoModelContainer" CdmEntityContainer="KinoEntities1">
+  <EntityContainerMapping StorageEntityContainer="Хранилище KinoModelContainer" CdmEntityContainer="KinoEntities2">
     <EntitySetMapping Name="admin">
       <EntityTypeMapping TypeName="KinoModel.admin">
         <MappingFragment StoreEntitySet="admin">
@@ -34,10 +34,10 @@
       <EntityTypeMapping TypeName="KinoModel.otchot">
         <MappingFragment StoreEntitySet="otchot">
           <ScalarProperty Name="id" ColumnName="id" />
-          <ScalarProperty Name="mes" ColumnName="mes" />
           <ScalarProperty Name="countTicket" ColumnName="countTicket" />
           <ScalarProperty Name="sumTicketPrice" ColumnName="sumTicketPrice" />
           <ScalarProperty Name="sumProdPrice" ColumnName="sumProdPrice" />
+          <ScalarProperty Name="date" ColumnName="date" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
@@ -50,6 +50,7 @@
           <ScalarProperty Name="selectPlant" ColumnName="selectPlant" />
           <ScalarProperty Name="time" ColumnName="time" />
           <ScalarProperty Name="price" ColumnName="price" />
+          <ScalarProperty Name="openPlant" ColumnName="openPlant" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>

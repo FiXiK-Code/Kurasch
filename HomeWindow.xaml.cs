@@ -49,6 +49,14 @@ namespace Kursach
         }
 
         //########## Home
+
+        private void exit_Kassir_Click(object sender, RoutedEventArgs e)
+        {
+            LoginWindow loginWindow = new LoginWindow();
+            loginWindow.Show();
+            this.Close();
+        }
+
         private void poisk_afish_TextChanged(object sender, TextChangedEventArgs e)
         {
             //\\\\ обновление коллекции в соответсвии с контентом строки поиска
@@ -62,8 +70,10 @@ namespace Kursach
             //\\\ обращение к бд чтобы взять данные о времени сеансов
             //\\\\ передача названия в NameFillm_Home
 
-            NameFillm_Home.Text = list_afish.SelectedItem.ToString();
-
+            if (list_afish.SelectedItem != null)
+                NameFillm_Home.Text = ((TextBlock)list_afish.SelectedItem).Text.ToString();
+            else NameFillm_Home.Text = "Выберите фильм";
+            CB_Time.Items.Clear();
             var database = App.db.seans.Where(p => p.afish_id == App.db.afish.FirstOrDefault(o => o.name == NameFillm_Home.Text.ToString()).id).OrderBy(p => p.time).ToList();
             foreach(var time in database)
             {
@@ -77,11 +87,21 @@ namespace Kursach
             //\\\\ Обращение к бд чтобы взять цену билета
             //\\\\ количество свободных мест
 
-            var database = App.db.seans.FirstOrDefault(p => p.afish_id == App.db.afish.FirstOrDefault(o => o.name == NameFillm_Home.Text).id 
+            if(CB_Time.SelectedItem != null)
+            {
+                var database = App.db.seans.FirstOrDefault(p => p.afish_id == App.db.afish.FirstOrDefault(o => o.name == NameFillm_Home.Text).id
             && p.time == CB_Time.SelectedItem.ToString());
 
-            prise_Home.Text = database.price.ToString();
-            OpenPlant_Home.Text = database.openPlant.ToString();
+                GoToPlentSelect.IsEnabled = true;
+                prise_Home.Text = database.price.ToString();
+                OpenPlant_Home.Text = database.openPlant.ToString();
+            }
+            else
+            {
+                GoToPlentSelect.IsEnabled = true;
+                prise_Home.Text = "";
+                OpenPlant_Home.Text = "";
+            }
         }
 
         private void GoToPlentSelect_Click(object sender, RoutedEventArgs e)
@@ -91,8 +111,12 @@ namespace Kursach
             //\\\ >>занятые  места
             //\\\ >> цена билета
             //\\\ >> номер зала  и количество мест
+            Buff.selectPlant = new List<string>();
 
-            var seans = App.db.seans.FirstOrDefault(p => p.afish_id == App.db.afish.FirstOrDefault(o => o.name == NameFillm_Home.Text).id);
+            Buff.snacs = new List<string>();
+
+            var seans = App.db.seans.FirstOrDefault(p => p.afish_id == App.db.afish.FirstOrDefault(o => o.name == NameFillm_Home.Text).id
+            && p.time == CB_Time.SelectedItem.ToString());
 
             NameFlim_SelectPlant.Text = NameFillm_Home.Text.ToString();
             prise_SelPlant.Text = prise_Home.Text.ToString();
@@ -102,7 +126,7 @@ namespace Kursach
 
             int j = 0;
             int k = 0;
-            List<string> redPlant = App.db.seans.FirstOrDefault(p => p.afish_id == App.db.afish.FirstOrDefault(o => o.name == NameFillm_Home.Text).id).selectPlant.Split('/').ToList();
+            List<string> redPlant = App.db.seans.FirstOrDefault(p => p.afish_id == App.db.afish.FirstOrDefault(o => o.name == NameFillm_Home.Text).id &&  p.time == CB_Time.SelectedItem.ToString()).selectPlant.Split('/').ToList();
             var zall = App.db.zall.FirstOrDefault(p => p.id == seans.zall_id); 
             for (int i = 0; i < zall.countRyd * zall.countPlant; ++i)
             {
@@ -114,7 +138,7 @@ namespace Kursach
                 {
                     button = new Button()
                     {
-                        Name = (j+1).ToString(),
+                        Name = "_" + (j + 1).ToString(),
                         Content = k + 1,
                         Height = 25,
                         Width = 25,
@@ -125,7 +149,7 @@ namespace Kursach
                 }else{
                     button = new Button()
                     {
-                        Name = (j + 1).ToString(),
+                        Name = "_" + (j + 1).ToString(),
                         Content = k + 1,
                         Height = 25,
                         Width = 25,
@@ -153,7 +177,7 @@ namespace Kursach
         // клик по месту в зале
         void button_Click(object sender, RoutedEventArgs e)
         {
-            //add to buff
+            //\\\\ add to buff
 
             SolidColorBrush orang = new SolidColorBrush(Colors.Orange);
             SolidColorBrush green = new SolidColorBrush(Colors.Green);
@@ -162,15 +186,18 @@ namespace Kursach
             if (btnBack.Color == orang.Color)
             {
                 ((Button)sender).Background = new SolidColorBrush(Colors.Green);
-                Buff.selectPlant.Remove($"{((Button)sender).Name},{((Button)sender).Content}");
+                var button = ((Button)sender);
+                Buff.selectPlant.Remove($"{button.Name.Split('_')[1]},{button.Content}/");
                 Buff.SumPrise -= Convert.ToInt32(prise_SelPlant.Text);
             }
             else if (btnBack.Color == green.Color)
             {
                 ((Button)sender).Background = new SolidColorBrush(Colors.Orange);
-                Buff.selectPlant.Add($"{((Button)sender).Name},{((Button)sender).Content}");
+                var button = ((Button)sender);
                 Buff.SumPrise += Convert.ToInt32(prise_SelPlant.Text);
+                Buff.selectPlant.Add($"{button.Name.Split('_')[1]},{button.Content}/");
             }
+            endSelectionPlent.IsEnabled = true;
         }
 
         private void endSelectionPlent_Click(object sender, RoutedEventArgs e)
@@ -198,8 +225,9 @@ namespace Kursach
             //\\\ передавть выбранный элемент SnacksGrid в SnacksList с учетом количества
             //\\\\ (int)CountSnacks (для рассчта цены)
             //\\\\ вид чека как для оплаты снек - количество - сумма
+            if (CountSnacks.Text == "" || CountSnacks.Text == "Count") CountSnacks.Text = "1";
             var content = ((snacks)SnacksGrid.SelectedItem).name + $"  Количество: {CountSnacks.Text} Сумма: "
-                + ( ((snacks)SnacksGrid.SelectedItem).price * Convert.ToInt32(CountSnacks.Text) ).ToString();
+                + ( ((snacks)SnacksGrid.SelectedItem).price * Convert.ToInt32(CountSnacks.Text) ).ToString()+'\n';
             SnacksList.Items.Add(content);
             Buff.snacs.Add(content);
             Buff.SumPrise += ((snacks)SnacksGrid.SelectedItem).price * Convert.ToInt32(CountSnacks.Text);
@@ -208,26 +236,37 @@ namespace Kursach
 
         private void DelSnackInList_Click(object sender, RoutedEventArgs e)
         {
-            //\\\\ удвление выбранного элемента из списка
+            //\\\\ удаление выбранного элемента из списка
             //\\\\ проверка пустого выделения
             if (SnacksList.SelectedItem != null)
             {
-                SnacksList.Items.Remove(SnacksList.SelectedItem);
+                
                 Buff.snacs.Remove(SnacksList.SelectedItem.ToString());
-                Buff.SumPrise -= Convert.ToInt32(SnacksList.SelectedItem.ToString().Split("Сумма:".ToCharArray())[1].Trim());
+                var price = SnacksList.SelectedItem.ToString().Split(new string[] { "Сумма:"},0);
+                Buff.SumPrise -= Convert.ToInt32(price[1].Trim());// проверить что возвращает именно сумму!!
+                SnacksList.Items.Remove(SnacksList.SelectedItem);
             }
             else MessageBox.Show("Не выбран товар для удаления из списка!");
         }
 
         private void GoToOpalata_Click(object sender, RoutedEventArgs e)
         {
-            //\\\\ заполнить чек оплаты
+            //\\\\ очистить и заполнить заново чек оплаты
             //\\\\ "подсчет" суммы
+            Chek_oplata.Items.Clear();
             Chek_oplata.Items.Add($"Билеты  Количество: {Buff.selectPlant.Count()} Сумма: {Buff.selectPlant.Count() * Convert.ToInt32(prise_SelPlant.Text)}");
             foreach(var obj in Buff.snacs)
                 Chek_oplata.Items.Add(obj);
 
             finalyPrise.Text = Buff.SumPrise.ToString();
+
+            GoToSelPlent.IsEnabled = true;
+            GoToSnacks.IsEnabled = true;
+
+            nalich_btn.IsEnabled = true;
+            beznal_btn.IsEnabled = true;
+
+            end_Oplata.Visibility = Visibility.Hidden;
 
             SelectPlent.Visibility = Visibility.Hidden;
             Home.Visibility = Visibility.Hidden;
@@ -260,6 +299,12 @@ namespace Kursach
         {
             //\\\\ активация кнопок печати
 
+            GoToSelPlent.IsEnabled = false;
+            GoToSnacks.IsEnabled = false;
+
+            nalich_btn.IsEnabled = false;
+            beznal_btn.IsEnabled = false;
+
             Nalich_oplata.Text = "0";
             Sdacha_oplata.Text= "0";
 
@@ -281,6 +326,12 @@ namespace Kursach
             }
             else
             {
+                GoToSelPlent.IsEnabled = false;
+                GoToSnacks.IsEnabled = false;
+
+                nalich_btn.IsEnabled = false;
+                beznal_btn.IsEnabled = false;
+
                 Sdacha_oplata.Text = sdach.ToString();
 
                 PrintCheck.Visibility = Visibility.Visible;
@@ -294,21 +345,55 @@ namespace Kursach
         private void PrintCheck_Click(object sender, RoutedEventArgs e)
         {
             // заметки
+            MessageBox.Show("Чек напечатан!");
         }
 
         private void PrintTicket_Click(object sender, RoutedEventArgs e)
         {
-            // формирование данных для печати билетов -> название фильма\время начала\номер зала\ряд\место по количеству билетов
+            //\\\\ формирование данных для печати билетов -> название фильма\время начала\номер зала\ряд\место по количеству билетов
+            List<string> ticketList = new List<string>();
+            string output = "";
+            foreach(var plant in Buff.selectPlant.OrderBy(p => p.Split(',')[0]).OrderBy(p => p.Split(',')[1]))// проверить plant - должнобыть ряд/место
+            {
+                ticketList.Add($"фильм: {NameFlim_SelectPlant.Text}\nВремя начала: {CB_Time.Text.Split('-')[0]}\nНомер зала: {numZal_SelPlant.Content}\n" +
+                    $"Ряд: {plant.Split(',')[0]}\nМесто: {plant.Split(',')[1]}"); // проверить вывод - должнобыть ряд/место
+                output += $"фильм: {NameFlim_SelectPlant.Text}\nВремя начала: {CB_Time.Text.Split('-')[0]}\nНомер зала: {numZal_SelPlant.Content}\n" +
+                    $"Ряд: {plant.Split(',')[0]}\nМесто: {plant.Split(',')[1]}\n\n";
+            }
+            end_Oplata.Visibility = Visibility.Visible;
+            MessageBox.Show(output);
         }
 
-        private void btn_Click(object sender, RoutedEventArgs e)
+        private void end_Oplata_Click(object sender, RoutedEventArgs e)
         {
+            Buff.snacs.Clear();
 
+            var seans = App.db.seans.FirstOrDefault(p => p.afish_id == App.db.afish.FirstOrDefault(o => o.name == NameFillm_Home.Text).id && p.time == CB_Time.SelectedItem.ToString());
+            seans.openPlant -= Buff.selectPlant.Count();
+            foreach(var plant in Buff.selectPlant)
+            {
+                seans.selectPlant += plant;
+            }
+            App.db.SaveChanges();
+            Buff.selectPlant.Clear();
+
+            // составление отчета
+
+            poisk_afish.Text = "";
+            NameFillm_Home.Text = "Выберите фильм из списка!";
+            CB_Time.Items.Clear();
+            prise_Home.Text = "";
+            OpenPlant_Home.Text = "";
+            GoToPlentSelect.IsEnabled = false;
+            endSelectionPlent.IsEnabled = false;
+            end_Oplata.Visibility = Visibility.Hidden;
+
+            SelectPlent.Visibility = Visibility.Hidden;
+            Home.Visibility = Visibility.Visible;
+            snacks.Visibility = Visibility.Hidden;
+            oplata.Visibility = Visibility.Hidden;
         }
 
-        private void btn_Click_1(object sender, RoutedEventArgs e)
-        {
-
-        }
+        
     }
 }

@@ -13,10 +13,10 @@ namespace Kursach
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
     
-    public partial class KinoEntities1 : DbContext
+    public partial class KinoEntities2 : DbContext
     {
-        public KinoEntities1()
-            : base("name=KinoEntities1")
+        public KinoEntities2()
+            : base("name=KinoEntities2")
         {
         }
     
