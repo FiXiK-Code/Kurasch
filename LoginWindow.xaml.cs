@@ -158,6 +158,8 @@ namespace Kursach
 
             DGOthot.ItemsSource = App.db.otchot.ToList();
 
+            MonthCB.SelectedItem = null;
+            YearCB.SelectedItem = null;
 
             logined.Visibility = Visibility.Hidden;
             selector.Visibility = Visibility.Hidden;
@@ -350,13 +352,21 @@ namespace Kursach
 
             try
             {
-                var otchot = App.db.otchot.Where(p => p.date.Year == new DateTime(YearCB.SelectedIndex + 2022, MonthCB.SelectedIndex + 1, 1).Year
-                    && p.date.Month == new DateTime(YearCB.SelectedIndex + 2022, MonthCB.SelectedIndex + 1, 1).Month);// проверить что индекс с нуля
-                DGOthot.ItemsSource = otchot;
+                if(YearCB.SelectedItem != null)
+                {
+                    var Year = Convert.ToInt32(((TextBlock)YearCB.SelectedItem).Text);
+                    var otchot = App.db.otchot.Where(p => p.date.Year == Year && p.date.Month == MonthCB.SelectedIndex + 1).ToList();// проверить что индекс с нуля
+                    DGOthot.ItemsSource = otchot;
+                }
+                else
+                {
+                    DGOthot.ItemsSource = null;
+                }
             }
-            catch(Exception)
+            catch(Exception ex)
             {
-
+                //MessageBox.Show(ex.Message);
+                DGOthot.ItemsSource = null;
             }
         }
 
@@ -364,14 +374,21 @@ namespace Kursach
         {
             try
             {
-                var otchot = App.db.otchot.Where(p => p.date.Year == new DateTime(YearCB.SelectedIndex + 2022, MonthCB.SelectedIndex + 1, 1).Year
-                    && p.date.Month == new DateTime(YearCB.SelectedIndex + 2022, MonthCB.SelectedIndex + 1, 1).Month);// проверить что индекс с нуля
-
-                DGOthot.ItemsSource = otchot;
+                if (MonthCB.SelectedItem != null)
+                {
+                    var Year = Convert.ToInt32(((TextBlock)YearCB.SelectedItem).Text);
+                    var otchot = App.db.otchot.Where(p => p.date.Year == Year && p.date.Month == MonthCB.SelectedIndex + 1).ToList();// проверить что индекс с нуля
+                    DGOthot.ItemsSource = otchot;
+                }
+                else
+                {
+                    DGOthot.ItemsSource = null;
+                }
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-
+                //MessageBox.Show(ex.Message);
+                DGOthot.ItemsSource = null;
             }
         }
 
@@ -607,6 +624,11 @@ namespace Kursach
             otchot.Visibility = Visibility.Hidden;
             afish.Visibility = Visibility.Hidden;
             ListAfiah.Visibility = Visibility.Hidden;
+        }
+
+        private void DGKassir_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+
         }
     }
 }

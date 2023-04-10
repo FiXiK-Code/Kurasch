@@ -54,7 +54,7 @@
             <TextBlock HorizontalAlignment="Left" Margin="497,160,0,0" TextWrapping="Wrap" VerticalAlignment="Top" FontSize="20" Text="Время сеанса:"/>
             <Button x:Name="exit_Kassir" Content="Выход" HorizontalAlignment="Left" Margin="673,10,0,0" VerticalAlignment="Top" Width="111" Height="39" FontSize="20" Click="exit_Kassir_Click"/>
         </Grid>
-        <Grid x:Name="snacks" Visibility="Visible"  HorizontalAlignment="Left" Height="420" VerticalAlignment="Top" Width="794" Margin="0,0,-0.4,0" d:IsHidden="True">
+        <Grid x:Name="snacks" Visibility="Visible"  HorizontalAlignment="Left" Height="420" VerticalAlignment="Top" Width="794" Margin="0,0,-0.4,0">
             <Button x:Name="GoToOpalata" Content="Продолжить" HorizontalAlignment="Left" Margin="656,19,0,0" VerticalAlignment="Top" Width="128" Height="28" FontSize="16" Click="GoToOpalata_Click"/>
             <ListBox x:Name="SnacksList" HorizontalAlignment="Left" Height="279" Margin="422,52,0,0" VerticalAlignment="Top" Width="362"/>
             <DataGrid x:Name="SnacksGrid" HorizontalAlignment="Left" Height="279" Margin="10,52,0,0" VerticalAlignment="Top" Width="348"/>
@@ -64,7 +64,7 @@
             <Button x:Name="DelSnackInList" Content="X" HorizontalAlignment="Left" Margin="422,344,0,0" VerticalAlignment="Top" Height="28" Width="40" FontSize="20" Click="DelSnackInList_Click"/>
             <TextBox x:Name="CountSnacks" HorizontalAlignment="Left" Height="28" Margin="10,344,0,0" TextWrapping="Wrap" Text="Count" VerticalAlignment="Top" Width="120" FontSize="16"/>
         </Grid>
-        <Grid x:Name="oplata" Visibility="Visible" HorizontalAlignment="Left" Height="418" VerticalAlignment="Top" Width="794" Margin="0,0,-0.4,0">
+        <Grid x:Name="oplata" Visibility="Visible" HorizontalAlignment="Left" Height="418" VerticalAlignment="Top" Width="794" Margin="0,0,-0.4,0" d:IsHidden="True">
             <ListBox x:Name="Chek_oplata" HorizontalAlignment="Left" Height="338" Margin="10,70,0,0" VerticalAlignment="Top" Width="368"/>
             <Button x:Name="GoToSelPlent" Content="К выбору мест" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Width="146" Height="30" FontSize="16" Click="GoToSelPlent_Click"/>
             <Button x:Name="GoToSnacks" Content="К выбору снеков" HorizontalAlignment="Left" Margin="232,10,0,0" VerticalAlignment="Top" Width="146" Height="30" FontSize="16" Click="GoToSnacks_Click"/>

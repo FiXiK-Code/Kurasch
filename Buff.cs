@@ -16,6 +16,9 @@ namespace Kursach
 
         public static List<string> selectPlant {get;set;}
         public static List<string> snacs { get; set; }
+         
+        public static int SumProdPrise { get; set; }
+        public static int SumTicketPrise { get; set; }
 
         public static int SumPrise { get; set; }
 

@@ -23,7 +23,7 @@
             <Button x:Name="kassirBtn" Content="Открыть смену" HorizontalAlignment="Left" Margin="52,130,0,0" VerticalAlignment="Top" Width="270" Height="61" FontSize="20" Click="kassirBtn_Click" Grid.Column="1"/>
             <Button x:Name="adminBtn" Content="Администратор" HorizontalAlignment="Left" Margin="52,215,0,0" VerticalAlignment="Top" Width="270" Height="61" FontSize="20" Click="adminBtn_Click" Grid.Column="1"/>
         </Grid>
-        <Grid x:Name="admin" Visibility="Visible" HorizontalAlignment="Left" Height="397" VerticalAlignment="Top" Width="403" Margin="0,0,0,-0.2" d:IsHidden="True">
+        <Grid x:Name="admin" Visibility="Visible" HorizontalAlignment="Left" Height="397" VerticalAlignment="Top" Width="403" Margin="0,0,0,-0.2">
             <Button x:Name="adminKassiri" Content="Кассиры" HorizontalAlignment="Left" Margin="71,95,0,0" VerticalAlignment="Top" Width="270" Height="61" FontSize="20" Click="adminKassiri_Click"/>
             <Button x:Name="adminOtchot" Content="Отчет" HorizontalAlignment="Left" Margin="71,163,0,0" VerticalAlignment="Top" Width="270" Height="61" FontSize="20" Click="adminOtchot_Click"/>
             <Button x:Name="adminExit" Content="Выход" HorizontalAlignment="Left" Margin="71,299,0,0" VerticalAlignment="Top" Width="270" Height="61" FontSize="20" Click="adminExit_Click"/>
@@ -34,7 +34,7 @@
             <Button x:Name="lisatKassirAdd" Content="Добавить" HorizontalAlignment="Left" Margin="110,351,0,0" VerticalAlignment="Top" Width="184" Height="32" FontSize="20" Click="lisatKassirAdd_Click"/>
             <Button x:Name="listKassirRedact" Content="Редактировать" HorizontalAlignment="Left" Margin="10,314,0,0" VerticalAlignment="Top" Width="184" Height="32" FontSize="20" Click="listKassirRedact_Click"/>
             <Button x:Name="listKassirDelete" Content="Удалить" HorizontalAlignment="Left" Margin="209,314,0,0" VerticalAlignment="Top" Width="184" Height="32" FontSize="20" Click="listKassirDelete_Click"/>
-            <DataGrid x:Name="DGKassir" HorizontalAlignment="Left" Height="249" Margin="26,60,0,0" VerticalAlignment="Top" Width="353"/>
+            <DataGrid x:Name="DGKassir" HorizontalAlignment="Left" Height="249" Margin="26,60,0,0" VerticalAlignment="Top" Width="353" SelectionChanged="DGKassir_SelectionChanged"/>
         </Grid>
         <Grid x:Name="kassir" Visibility="Visible" HorizontalAlignment="Left" Height="397" VerticalAlignment="Top" Width="403" Margin="0,0,0,-0.2" d:IsHidden="True">
             <TextBox x:Name="Kassir_fio" HorizontalAlignment="Left" Height="58" Margin="99,71,0,0" TextWrapping="Wrap" Text="Иванов Иван Иванович" VerticalContentAlignment="Center" VerticalAlignment="Top" Width="294" FontSize="20" TextAlignment="Center"/>

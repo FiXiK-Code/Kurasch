@@ -236,8 +236,10 @@ namespace Kursach
             //\\\\ (int)CountSnacks (для рассчта цены)
             //\\\\ вид чека как для оплаты снек - количество - сумма
             if (CountSnacks.Text == "" || CountSnacks.Text == "Count") CountSnacks.Text = "1";
-            var content = ((snacks)SnacksGrid.SelectedItem).name + $"  Количество: {CountSnacks.Text} Сумма: "
-                + ( ((snacks)SnacksGrid.SelectedItem).price * Convert.ToInt32(CountSnacks.Text) ).ToString()+'\n';
+            var SumProdPrice = ((snacks)SnacksGrid.SelectedItem).price * Convert.ToInt32(CountSnacks.Text);
+            Buff.SumProdPrise += SumProdPrice;
+
+            var content = ((snacks)SnacksGrid.SelectedItem).name + $"  Количество: {CountSnacks.Text} Сумма: " + SumProdPrice.ToString()+'\n';
             SnacksList.Items.Add(content);
             Buff.snacs.Add(content);
             Buff.SumPrise += ((snacks)SnacksGrid.SelectedItem).price * Convert.ToInt32(CountSnacks.Text);
@@ -254,6 +256,7 @@ namespace Kursach
                 Buff.snacs.Remove(SnacksList.SelectedItem.ToString());
                 var price = SnacksList.SelectedItem.ToString().Split(new string[] { "Сумма:"},0);
                 Buff.SumPrise -= Convert.ToInt32(price[1].Trim());// проверить что возвращает именно сумму!!
+                Buff.SumProdPrise -= Convert.ToInt32(price[1].Trim());
                 SnacksList.Items.Remove(SnacksList.SelectedItem);
             }
             else MessageBox.Show("Не выбран товар для удаления из списка!");
@@ -264,7 +267,11 @@ namespace Kursach
             //\\\\ очистить и заполнить заново чек оплаты
             //\\\\ "подсчет" суммы
             Chek_oplata.Items.Clear();
-            Chek_oplata.Items.Add($"Билеты  Количество: {Buff.selectPlant.Count()} Сумма: {Buff.selectPlant.Count() * Convert.ToInt32(prise_SelPlant.Text)}");
+            var SumTicketPrice = Buff.selectPlant.Count() * Convert.ToInt32(prise_SelPlant.Text);
+            Buff.SumTicketPrise = SumTicketPrice;
+
+            Chek_oplata.Items.Add($"Билеты  Количество: {Buff.selectPlant.Count()} Сумма: {SumTicketPrice}");
+            
             foreach(var obj in Buff.snacs)
                 Chek_oplata.Items.Add(obj);
 
@@ -378,6 +385,25 @@ namespace Kursach
 
         private void end_Oplata_Click(object sender, RoutedEventArgs e)
         {
+            otchot otchot = new otchot();
+            try
+            {
+                otchot = App.db.otchot.FirstOrDefault(p => p.date.Year == DateTime.Now.Year && p.date.Month == DateTime.Now.Month && p.date.Day == DateTime.Now.Day);
+                otchot.countTicket += Buff.selectPlant.Count();
+                otchot.sumProdPrice += Buff.SumProdPrise;
+                otchot.sumTicketPrice += Buff.SumTicketPrise;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message.ToString());
+                otchot.date = DateTime.Now.Date;
+                otchot.countTicket = Buff.selectPlant.Count();
+                otchot.sumProdPrice = Buff.SumProdPrise;
+                otchot.sumTicketPrice = Buff.SumTicketPrise;
+                App.db.otchot.Add(otchot);
+            }
+            App.db.SaveChanges();
+
             Buff.snacs.Clear();
 
             var seans = App.db.seans.FirstOrDefault(p => p.afish_id == App.db.afish.FirstOrDefault(o => o.name == NameFillm_Home.Text).id && p.time == CB_Time.SelectedItem.ToString());
