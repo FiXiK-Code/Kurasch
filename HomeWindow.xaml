@@ -36,7 +36,7 @@
             <Button x:Name="goToMenu" Content="В меню" HorizontalAlignment="Left" Margin="631,66,0,0" VerticalAlignment="Top" Width="159" Click="goToMenu_Click"/>
             <TextBlock HorizontalAlignment="Left" Height="25" Margin="25,387,0,0" TextWrapping="Wrap" Text="Ряд 10" VerticalAlignment="Top" Width="54" TextAlignment="Right"/>
         </Grid>
-        <Grid x:Name="Home" Visibility="Visible"  HorizontalAlignment="Left" Height="420" VerticalAlignment="Top" Width="794" Margin="-10,-2,0,0" d:IsHidden="True">
+        <Grid x:Name="Home" Visibility="Visible"  HorizontalAlignment="Left" Height="420" VerticalAlignment="Top" Width="794" Margin="-10,-2,0,0">
             <ListBox x:Name="list_afish" HorizontalAlignment="Left" Height="280" Margin="35,113,0,0" VerticalAlignment="Top" Width="429" SelectionChanged="list_afish_SelectionChanged" FontSize="20"/>
             <TextBox x:Name="poisk_afish" HorizontalAlignment="Left" Height="40" Margin="35,54,0,0" TextWrapping="Wrap" Text="поиск" VerticalAlignment="Top" Width="429" FontSize="20" TextChanged="poisk_afish_TextChanged"/>
             <ComboBox x:Name="CB_Time" HorizontalAlignment="Left" Margin="497,206,0,0" VerticalAlignment="Top" Width="287" Height="43" SelectionChanged="CB_Time_SelectionChanged">
@@ -54,7 +54,7 @@
             <TextBlock HorizontalAlignment="Left" Margin="497,160,0,0" TextWrapping="Wrap" VerticalAlignment="Top" FontSize="20" Text="Время сеанса:"/>
             <Button x:Name="exit_Kassir" Content="Выход" HorizontalAlignment="Left" Margin="673,10,0,0" VerticalAlignment="Top" Width="111" Height="39" FontSize="20" Click="exit_Kassir_Click"/>
         </Grid>
-        <Grid x:Name="snacks" Visibility="Visible"  HorizontalAlignment="Left" Height="420" VerticalAlignment="Top" Width="794" Margin="0,0,-0.4,0">
+        <Grid x:Name="snacks" Visibility="Visible"  HorizontalAlignment="Left" Height="420" VerticalAlignment="Top" Width="794" Margin="0,0,-0.4,0" d:IsHidden="True">
             <Button x:Name="GoToOpalata" Content="Продолжить" HorizontalAlignment="Left" Margin="656,19,0,0" VerticalAlignment="Top" Width="128" Height="28" FontSize="16" Click="GoToOpalata_Click"/>
             <ListBox x:Name="SnacksList" HorizontalAlignment="Left" Height="279" Margin="422,52,0,0" VerticalAlignment="Top" Width="362"/>
             <DataGrid x:Name="SnacksGrid" HorizontalAlignment="Left" Height="279" Margin="10,52,0,0" VerticalAlignment="Top" Width="348"/>

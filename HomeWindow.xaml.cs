@@ -126,12 +126,13 @@ namespace Kursach
 
             int j = 0;
             int k = 0;
-            List<string> redPlant = App.db.seans.FirstOrDefault(p => p.afish_id == App.db.afish.FirstOrDefault(o => o.name == NameFillm_Home.Text).id &&  p.time == CB_Time.SelectedItem.ToString()).selectPlant.Split('/').ToList();
+            List<string> redPlant = App.db.seans.FirstOrDefault(p => p.afish_id == 
+                    App.db.afish.FirstOrDefault(o => o.name == NameFillm_Home.Text).id &&  p.time == CB_Time.SelectedItem.ToString())
+                    .selectPlant.Split('/').ToList();
             var zall = App.db.zall.FirstOrDefault(p => p.id == seans.zall_id); 
             for (int i = 0; i < zall.countRyd * zall.countPlant; ++i)
             {
                 if (i % zall.countPlant == 0 && i != 0) { j++; k = 0; }
-                
                 Button button = new Button();
                 string plant = $"{j+1},{k+1}";
                 if (redPlant.Contains(plant))
